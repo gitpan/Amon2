@@ -1,0 +1,160 @@
+2.09
+
+    - first release for CPAN
+
+2.08
+
+    - Web::Dispatcher::RouterSimple: export 'router' method
+
+2.07
+
+    - Plugin::Web::CSRFDefender: added get_csrf_defender_token method.
+
+2.06
+
+    - fixed csrfdefender for amon2 style(before this commit, it still amon1 style!)
+      (tokuhirom)
+
+2.05
+
+    - Plugin::Web::CSRFDefender: oops. older version does not works without Amon1
+    - Plugin::Web::JSON: fix Encode::Encoding object to mime-name
+      (s-aska)
+    - amon2-setup.pl: switch to DBIx::Inspector from DBIx::Skinny::Schema::Loader.
+      (tokuhirom)
+    - doc enhancement
+      (tokuhirom)
+
+2.04
+
+    - docs
+    - rewrote tutorial
+
+2.03
+
+    - new hook point: encode_html.
+
+2.02
+
+    - Amon::add_config will be deprecate
+    - Log::Dispatch is no longer default component
+    - docs(hiratara)
+
+2.01
+
+    - fixed test case
+    - added second argument for: $c->redirect($location, \%params)
+    - added second argument for: $c->redirect($location, \@params)
+    - added $c->fillin_form() method to Amon2;:Plugin::Web:FillInForm and
+      Amon2::Plugin::Web::FillInForm.
+
+2.00
+
+    - refactored
+    - bug fixed
+    - rewrote docs
+
+1.99_01
+
+    - Full rewrote Amon.
+    - This is RC of Amon 2.0
+
+1.03
+
+    - added 'router' attribute for Dispatcher::Lite.
+
+1.02
+
+    - bump up version
+
+1.01
+
+    - more flexible interface for Plugin::CSRFDefender
+
+1.00
+
+    - bump up version
+
+0.44
+
+    - added Amon2::Plugin::FillInFormLite.
+
+0.43
+
+    * e657339 [BUG] Amon2::Util must not returns undef at 2nd time function call.
+    * 7cfef62 Plugin::FillInForm: adjust content-length after fill-in.
+    * updated docs
+
+0.42
+
+    - added Text::Xslate support
+    - fixed some issues
+
+0.41
+
+    - added $req->uri_with() method.
+    - added new option 'open_layer' to Amon2::V::MT.
+
+0.40
+
+    - Amon2::Web::Dispatcher::HTTPxDispatcher was removed.
+    - Amon2::Web::C was removed.
+      use Amon2::Web::Declare instead.
+
+0.32
+
+    - M::P::Object is no longer needed
+    - ConfigLoader is enabled by default.
+    - depend to latest Plack
+    - Plugin::HTTPSesssion: pass $c to callback
+
+0.31
+
+    - Amon2::Web::Dispatcher::HTTPxDispatcher will remove on 0.40
+    - do not depend to Module::Pluggable::Object.
+      New loader will die if one of controller has a syntax error.
+
+0.30
+
+    [SOME INCOMPAT CHANGES]
+    - added Amon2::ConfigLoader
+    - make container as more simple
+    - use class-data-inheritable in container
+    - $c->view method move to Amon2::Web
+    - added Amon2::Web->render()
+    - added Amon2::Web->render_partial()
+
+0.22
+
+    - Factory class was deprecated.
+    - DBIx::Skinny is no longer default ORM.
+      (Amon2 should not select any ORM as default)
+    - move uri_for to Amon2::Web
+
+0.21
+
+    - fixed tests
+    - Amon2::Sense::add_trigger should take multiple triggers.
+    - [bug fixed] hook with instance should work
+    - fixed deps
+    - move redirect method to Amon2::Web.
+
+0.20
+
+    - added Web::Dispatcher::Lite
+    - Web::Dispatcher::RouterSimple:
+        enable stricture automatically
+
+0.19
+
+    - make DBIx::Skinny as default
+    - use Router::Simple.
+    - fixed dependencies
+
+0.18
+
+    - added logger support
+
+0.01
+
+    - initial release
