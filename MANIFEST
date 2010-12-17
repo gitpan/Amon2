@@ -45,13 +45,7 @@ inc/Test/Requires.pm
 lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
 lib/Amon2/Declare.pm
-lib/Amon2/Manual/Components.ja.pod
-lib/Amon2/Manual/FAQ.ja.pod
-lib/Amon2/Manual/HandleStaticFile.ja.pod
-lib/Amon2/Manual/Intro.ja.pod
-lib/Amon2/Manual/Mobile.ja.pod
 lib/Amon2/Manual/TODO.pod
-lib/Amon2/Manual/Tutorial.ja.pod
 lib/Amon2/Plugin/LogDispatch.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInForm.pm
