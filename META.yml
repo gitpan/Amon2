@@ -37,10 +37,9 @@ requires:
   Try::Tiny: 0.06
   URI: 1.54
   URI::Escape: 3.3
-  local::lib: 0
   parent: 0.223
   perl: 5.8.1
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.11
+version: 2.12
