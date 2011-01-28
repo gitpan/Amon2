@@ -31,10 +31,11 @@ use <%= $module %>::DB;
 
 sub db {
     my ($self) = @_;
-    $self->{db} //= do {
+    if (!defined $self->{db}) {
         my $conf = $self->config->{'DBIx::Skinny'} or die "missing configuration for 'DBIx::Skinny'";
-        <%= $module %>::DB->new($conf);
-    };
+        $self->{db} = <%= $module %>::DB->new($conf);
+    }
+    return $self->{db};
 }
 <% } %>
 
@@ -81,6 +82,14 @@ use Tiffany::Text::Xslate;
 # load plugins
 # __PACKAGE__->load_plugins('Web::FillInFormLite');
 # __PACKAGE__->load_plugins('Web::NoCache');
+
+# for your security
+__PACKAGE__->add_trigger(
+    AFTER_DISPATCH => sub {
+        my ( $c, $res ) = @_;
+        $res->header( 'X-Content-Type-Options' => 'nosniff' );
+    },
+);
 
 1;
 -- lib/$path/Web/Dispatcher.pm
