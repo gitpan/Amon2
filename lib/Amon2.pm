@@ -7,7 +7,7 @@ use Plack::Util ();
 use Data::OptList ();
 use Carp ();
 
-our $VERSION = '2.13';
+our $VERSION = '2.14';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -78,6 +78,8 @@ sub load_plugin {
 
 1;
 __END__
+
+=encoding utf-8
 
 =head1 NAME
 
