@@ -25,6 +25,8 @@ recommends:
 requires:
   Data::OptList: 0.106
   Exporter: 5.64
+  HTML::FillInForm::Lite: 1.09
+  HTTP::Session: 0.41
   Module::Find: 0.1
   Plack: 0.9943
   Router::Simple: 0.06
@@ -42,4 +44,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.14
+version: 2.15
