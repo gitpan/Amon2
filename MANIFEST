@@ -76,6 +76,7 @@ t/100_core/005_trigger.t
 t/100_core/008_request_uri_with.t
 t/100_core/009_uri_for.t
 t/100_core/010_add_config.t
+t/100_core/011_random_string.t
 t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
 t/600_plugins/001_mobile_agent.t

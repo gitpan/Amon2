@@ -31,6 +31,7 @@ requires:
   HTTP::Session: 0.41
   Module::Find: 0.1
   Plack: 0.9943
+  Plack::Middleware::ReverseProxy: 0
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
   SQL::Interp: 0
@@ -47,4 +48,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.16
+version: 2.17

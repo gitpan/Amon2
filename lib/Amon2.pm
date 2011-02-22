@@ -7,7 +7,7 @@ use Plack::Util ();
 use Data::OptList ();
 use Carp ();
 
-our $VERSION = '2.16';
+our $VERSION = '2.17';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -112,7 +112,7 @@ Set your context object(INTERNAL USE ONLY).
 
 =back
 
-=head1 CLASS METHOS for inherited class
+=head1 CLASS METHODS for inherited class
 
 =over 4
 
@@ -126,7 +126,7 @@ This is a mode name for Amon2. Default implementation of this method is:
 
     sub mode_name { $ENV{PLACK_ENV} }
 
-You can override this method if you want to determin the mode by other method.
+You can override this method if you want to determine the mode by other method.
 
 =item C<< MyApp->new() >>
 
@@ -138,7 +138,7 @@ Create new context object and set it to global context.
 
 =item C<< MyApp->base_dir() >>
 
-This method reutrns application base directory.
+This method returns application base directory.
 
 =item C<< MyApp->load_plugin($module_name[, \%config]) >>
 
