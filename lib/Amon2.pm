@@ -7,7 +7,7 @@ use Plack::Util ();
 use Data::OptList ();
 use Carp ();
 
-our $VERSION = '2.19';
+our $VERSION = '2.20';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -154,6 +154,14 @@ I<$module_name:> package name of the plugin. You can write it as two form like L
 Load multiple plugins at one time. The arguments are processed by L<Data::OptList>.
 
 =back
+
+=head1 DOCUMENTS
+
+More complicated documents are available on http://amon.64p.org/
+
+=head1 SUPPORTS
+
+#amon at irc.perl.org is available.
 
 =head1 AUTHOR
 

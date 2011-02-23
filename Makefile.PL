@@ -7,7 +7,7 @@ license 'perl';
 
 requires 'Plack'      => 0.9943;
 requires 'Try::Tiny'  => 0.06;
-requires 'Test::More' => 0.88;     # 0.88 or later is required for done_testing!
+requires 'Test::More' => 0.94;     # 0.94 or later is required for better testing.
 requires 'Exporter'   => 5.64;
 requires 'parent'                   => 0.223;
 requires 'Module::Find'             => 0.10;
@@ -29,6 +29,7 @@ requires 'DBD::SQLite' => 1.31;
 requires 'DBIx::TransactionManager';
 requires 'SQL::Interp';
 requires 'Plack::Middleware::ReverseProxy';
+requires 'Carp::Clan' => '6.04';
 
 # Optional components
 recommends 'Test::WWW::Mechanize::PSGI';

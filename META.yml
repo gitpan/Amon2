@@ -23,6 +23,7 @@ no_index:
 recommends:
   Test::WWW::Mechanize::PSGI: 0
 requires:
+  Carp::Clan: 6.04
   DBD::SQLite: 1.31
   DBIx::TransactionManager: 0
   Data::OptList: 0.106
@@ -36,7 +37,7 @@ requires:
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
   SQL::Interp: 0
-  Test::More: 0.88
+  Test::More: 0.94
   Text::MicroTemplate: 0.15
   Text::Xslate: 0.1056
   Text::Xslate::Bridge::TT2Like: 0.00007
@@ -49,4 +50,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.19
+version: 2.20
