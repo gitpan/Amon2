@@ -29,6 +29,7 @@ requires:
   Exporter: 5.64
   HTML::FillInForm::Lite: 1.09
   HTTP::Session: 0.41
+  MRO::Compat: 0
   Module::Find: 0.1
   Plack: 0.9943
   Plack::Middleware::ReverseProxy: 0
@@ -48,4 +49,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.17
+version: 2.18
