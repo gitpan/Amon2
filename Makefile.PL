@@ -8,14 +8,13 @@ license 'perl';
 requires(
     'Plack'         => 0.9943,
     'Try::Tiny'     => 0.06,
-    'Test::More'    => 0.94,     # 0.94 or later is required for better testing.
+    'Test::More'    => 0.96,     # 0.96 or later is required for better testing.
     'Exporter'      => 5.64,
     'parent'        => 0.223,
     'Module::Find'  => 0.10,
     'URI'           => 1.54,
     'URI::Escape'   => 3.30,
     'Data::OptList' => 0.106,
-    'Tiffany'       => 0.02,
     'MRO::Compat'   => 0,
 );
 
@@ -28,10 +27,6 @@ requires(
     'Router::Simple::Sinatraish' => 0.02,
     'HTML::FillInForm::Lite'     => 1.09,
     'HTTP::Session'              => 0.41,
-    'DBD::SQLite'                => 1.31,
-    'DBIx::TransactionManager'   => 0,
-    'SQL::Interp'                => 0,
-    'Carp::Clan'                 => '6.04',
     'Plack::Middleware::ReverseProxy' => 0,
 );
 

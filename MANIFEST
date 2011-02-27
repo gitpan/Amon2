@@ -68,7 +68,6 @@ META.yml
 README.mkdn
 script/amon2-setup.pl
 t/00_compile.t
-t/01_hello.t
 t/100_core/001_request_param_decoded.t
 t/100_core/002_response.t
 t/100_core/003_redirect.t
@@ -77,8 +76,10 @@ t/100_core/008_request_uri_with.t
 t/100_core/009_uri_for.t
 t/100_core/010_add_config.t
 t/100_core/011_random_string.t
+t/100_core/012_trigger_controller.t
 t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
+t/300_skelton/01_basic.t
 t/600_plugins/001_mobile_agent.t
 t/600_plugins/002_fillin_form.t
 t/600_plugins/003_session.t
