@@ -55,6 +55,7 @@ lib/Amon2/Plugin/Web/JSON.pm
 lib/Amon2/Plugin/Web/MobileAgent.pm
 lib/Amon2/Plugin/Web/MobileCharset.pm
 lib/Amon2/Plugin/Web/NoCache.pm
+lib/Amon2/Plugin/Web/PlackSession.pm
 lib/Amon2/Trigger.pm
 lib/Amon2/Util.pm
 lib/Amon2/Web.pm
@@ -90,6 +91,7 @@ t/600_plugins/007_json.t
 t/600_plugins/007_json_default_encoding.t
 t/600_plugins/008_no_cache.t
 t/600_plugins/009_csrf_defender.t
+t/600_plugins/010_plack_session.t
 t/800_dispatcher/002_router_simple.t
 t/800_dispatcher/003_lite.t
 t/apps/ConfigLoad/Makefile
