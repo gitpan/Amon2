@@ -45,7 +45,6 @@ inc/Test/Requires.pm
 lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
 lib/Amon2/Declare.pm
-lib/Amon2/Manual/TODO.pod
 lib/Amon2/Plugin/LogDispatch.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInForm.pm
@@ -56,6 +55,10 @@ lib/Amon2/Plugin/Web/MobileAgent.pm
 lib/Amon2/Plugin/Web/MobileCharset.pm
 lib/Amon2/Plugin/Web/NoCache.pm
 lib/Amon2/Plugin/Web/PlackSession.pm
+lib/Amon2/Setup/Asset/jQuery.pm
+lib/Amon2/Setup/Flavor.pm
+lib/Amon2/Setup/Flavor/Basic.pm
+lib/Amon2/Setup/Flavor/Minimum.pm
 lib/Amon2/Trigger.pm
 lib/Amon2/Util.pm
 lib/Amon2/Web.pm
@@ -78,9 +81,12 @@ t/100_core/009_uri_for.t
 t/100_core/010_add_config.t
 t/100_core/011_random_string.t
 t/100_core/012_trigger_controller.t
+t/100_core/013_tiffany.t
 t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
-t/300_skelton/01_basic.t
+t/300_setup/01_minimum.t
+t/300_setup/02_basic.t
+t/300_setup/03_asset_jquery.t
 t/600_plugins/001_mobile_agent.t
 t/600_plugins/002_fillin_form.t
 t/600_plugins/003_session.t
@@ -138,9 +144,10 @@ t/apps/SampleApp/lib/SampleApp/Web/Dispatcher.pm
 t/apps/SampleApp/SampleApp.psgi
 t/apps/SampleApp/tmpl/base.mt
 t/apps/SampleApp/tmpl/index.mt
+t/tmpl/foo.mt
 t/Util.pm
 TODO
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
-xt/perlcriticrc
+xt/skelton/01_basic.t
