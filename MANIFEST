@@ -47,7 +47,6 @@ lib/Amon2/Config/Simple.pm
 lib/Amon2/Declare.pm
 lib/Amon2/Plugin/LogDispatch.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
-lib/Amon2/Plugin/Web/FillInForm.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
 lib/Amon2/Plugin/Web/HTTPSession.pm
 lib/Amon2/Plugin/Web/JSON.pm
@@ -55,6 +54,7 @@ lib/Amon2/Plugin/Web/MobileAgent.pm
 lib/Amon2/Plugin/Web/MobileCharset.pm
 lib/Amon2/Plugin/Web/NoCache.pm
 lib/Amon2/Plugin/Web/PlackSession.pm
+lib/Amon2/Setup/Asset/Blueprint.pm
 lib/Amon2/Setup/Asset/jQuery.pm
 lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
@@ -86,9 +86,8 @@ t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
 t/300_setup/01_minimum.t
 t/300_setup/02_basic.t
-t/300_setup/03_asset_jquery.t
+t/300_setup/03_asset.t
 t/600_plugins/001_mobile_agent.t
-t/600_plugins/002_fillin_form.t
 t/600_plugins/003_session.t
 t/600_plugins/004_mobile_charset.t
 t/600_plugins/005_fillin_form_lite.t
