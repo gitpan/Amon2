@@ -26,9 +26,6 @@ eg/Hello/xt/01_podspell.t
 eg/Hello/xt/02_perlcritic.t
 eg/Hello/xt/03_pod.t
 eg/Hello/xt/perlcriticrc
-eg/Hello2/Makefile
-eg/Hello2/META.yml
-eg/Hello2/pm_to_blib
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
@@ -99,9 +96,6 @@ t/600_plugins/009_csrf_defender.t
 t/600_plugins/010_plack_session.t
 t/800_dispatcher/002_router_simple.t
 t/800_dispatcher/003_lite.t
-t/apps/ConfigLoad/Makefile
-t/apps/ConfigLoad/META.yml
-t/apps/ConfigLoad/pm_to_blib
 t/apps/DeepNamespace/.gitignore
 t/apps/DeepNamespace/DeepNamespace.psgi
 t/apps/DeepNamespace/lib/DeepNamespace.pm
@@ -126,10 +120,7 @@ t/apps/Extended/lib/Extended/Web.pm
 t/apps/Extended/lib/Extended/Web/C/Root.pm
 t/apps/Extended/lib/Extended/Web/Dispatcher.pm
 t/apps/Extended/lib/Extended/Web/Request.pm
-t/apps/Extended/Makefile
 t/apps/Extended/Makefile.PL
-t/apps/Extended/META.yml
-t/apps/Extended/pm_to_blib
 t/apps/Extended/t/01_root.t
 t/apps/Extended/t/02_die.t
 t/apps/Extended/t/03_session.t
@@ -149,4 +140,5 @@ TODO
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
+xt/04_pod_coverage.t
 xt/skelton/01_basic.t

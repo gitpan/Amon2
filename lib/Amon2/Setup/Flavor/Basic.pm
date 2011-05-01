@@ -48,7 +48,7 @@ sub dispatch {
 # setup view class
 use Text::Xslate;
 {
-    my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || die "missing configuration for Text::Xslate";
+    my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || +{};
     unless (exists $view_conf->{path}) {
         $view_conf->{path} = [ File::Spec->catdir(__PACKAGE__->base_dir(), 'tmpl') ];
     }
@@ -122,8 +122,19 @@ any '/' => sub {
             sqlite_unicode => 1,
         }
     ],
-    'Text::Xslate' => +{
-    },
+};
+...
+
+    $self->write_file("config/deployment.pl", <<'...');
++{
+    'DBI' => [
+        'dbi:SQLite:dbname=deployment.db',
+        '',
+        '',
+        +{
+            sqlite_unicode => 1,
+        }
+    ],
 };
 ...
 
@@ -137,8 +148,6 @@ any '/' => sub {
             sqlite_unicode => 1,
         }
     ],
-    'Text::Xslate' => +{
-    },
 };
 ...
 

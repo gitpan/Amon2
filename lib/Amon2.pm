@@ -8,7 +8,7 @@ use Data::OptList ();
 use Carp ();
 use Amon2::Config::Simple;
 
-our $VERSION = '2.30';
+our $VERSION = '2.31';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -155,6 +155,14 @@ I<$module_name:> package name of the plugin. You can write it as two form like L
 =item C<< MyApp->load_plugins($module_name[, \%config ], ...) >>
 
 Load multiple plugins at one time. The arguments are processed by L<Data::OptList>.
+
+=item C<< MyApp->load_config() >>
+
+You can get a configuration hashref from C<< config/$ENV{PLACK_ENV}.pl >>. You can override this method for customizing configuration loading method.
+
+=item C<< MyApp->add_config() >>
+
+DEPRECATED.
 
 =back
 
