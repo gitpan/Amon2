@@ -47,4 +47,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.39
+version: 2.40
