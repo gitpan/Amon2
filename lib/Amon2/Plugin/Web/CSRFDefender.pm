@@ -78,3 +78,42 @@ sub validate_csrf {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Amon2::Plugin::Web::CSRFDefender - Anti CSRF filter
+
+=head1 SYNOPSIS
+
+    package MyApp::Web;
+    use Amon2::Web;
+
+    __PACKAGE__->load_plugin('Web::CSRFDefender');
+
+=head1 DESCRIPTION
+
+This plugin denys CSRF request.
+
+=head1 METHODS
+
+=over 4
+
+=item $c->get_csrf_defender_token()
+
+Get a CSRF defender token. This method is useful to add token for AJAX request.
+
+=item $c->validate_csrf()
+
+You can validate CSRF token manually.
+
+=back
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<Amon2>
+
