@@ -15,7 +15,6 @@ eg/Hello/lib/Hello/Web/Request.pm
 eg/Hello/lib/Hello/Web/Response.pm
 eg/Hello/Makefile.PL
 eg/Hello/script/make_schema.pl
-eg/Hello/sql/my.sql
 eg/Hello/sql/sqlite.sql
 eg/Hello/t/01_root.t
 eg/Hello/t/02_mech.t
