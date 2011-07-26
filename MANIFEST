@@ -84,6 +84,8 @@ t/300_setup/04_lite.t
 t/400_lite/01_simple.t
 t/400_lite/02_plugin.psgi
 t/400_lite/02_plugin.t
+t/400_lite/03_kolon.t
+t/400_lite/04_tmt.t
 t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t
 t/600_plugins/007_json.t
