@@ -34,13 +34,13 @@ requires:
   JSON: 2
   MRO::Compat: 0
   Module::Find: 0.1
-  Plack: 0.9943
+  Plack: 0.9982
   Plack::Middleware::ReverseProxy: 0
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
   Test::More: 0.98
-  Text::Xslate: 1.0012
-  Text::Xslate::Bridge::TT2Like: 0.00007
+  Text::Xslate: 1.4001
+  Text::Xslate::Bridge::TT2Like: 0.00008
   Try::Tiny: 0.06
   URI: 1.54
   URI::Escape: 3.3
@@ -49,4 +49,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 2.50
+version: 2.52
