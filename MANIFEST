@@ -1,4 +1,5 @@
 .gitignore
+.proverc
 Changes
 eg/Hello/.gitignore
 eg/Hello/config/development.pl
@@ -51,6 +52,8 @@ lib/Amon2/Setup/Asset/Bootstrap.pm
 lib/Amon2/Setup/Asset/jQuery.pm
 lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
+lib/Amon2/Setup/Flavor/DotCloud.pm
+lib/Amon2/Setup/Flavor/Large.pm
 lib/Amon2/Setup/Flavor/Lite.pm
 lib/Amon2/Setup/Flavor/Minimum.pm
 lib/Amon2/Trigger.pm
@@ -82,6 +85,8 @@ t/300_setup/01_minimum.t
 t/300_setup/02_basic.t
 t/300_setup/03_asset.t
 t/300_setup/04_lite.t
+t/300_setup/05_dotcloud.t
+t/300_setup/06_large.t
 t/400_lite/01_simple.t
 t/400_lite/02_plugin.psgi
 t/400_lite/02_plugin.t
@@ -135,6 +140,7 @@ t/apps/SampleApp/lib/SampleApp/Web/Dispatcher.pm
 t/apps/SampleApp/SampleApp.psgi
 t/apps/SampleApp/tmpl/base.mt
 t/apps/SampleApp/tmpl/index.mt
+t/TestFlavor.pm
 t/tmpl/foo.mt
 t/Util.pm
 TODO

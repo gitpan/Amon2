@@ -9,6 +9,7 @@ use File::Basename;
 use File::Path ();
 use Amon2;
 use Plack::Util ();
+use Carp ();
 
 my $xslate = Text::Xslate->new(
     syntax => 'Kolon',
@@ -56,21 +57,31 @@ sub run { die "This is abstract base method" }
 
 sub mkpath {
     my ($self, $path) = @_;
+    Carp::croak("path should not be ref") if ref $path;
     infof("mkpath: $path");
     File::Path::mkpath($path);
 }
 
+sub render_string {
+    my $self = shift;
+    my $template = shift;
+    my %args = @_==1 ? %{$_[0]} : @_;
+    return $xslate->render_string($template, {%$self, %args});
+}
+
 sub write_file {
-    my ($self, $filename, $template) = @_;
+    my ($self, $filename, $template) = (shift, shift, shift);
+    Carp::croak("filename should not be reference") if ref $filename;
 
     $filename =~ s/<<([^>]+)>>/$self->{lc($1)} or die "$1 is not defined. But you want to use $1 in filename."/ge;
 
-    my $content = $xslate->render_string($template, +{%$self});
+    my $content = $self->render_string($template, @_);
     $self->write_file_raw($filename, $content);
 }
 
 sub write_file_raw {
     my ($self, $filename, $content) = @_;
+    Carp::croak("filename should not be reference") if ref $filename;
 
     infof("writing $filename");
 
@@ -90,7 +101,19 @@ sub load_asset {
     $self->{tags} .= $klass->tags;
     $self->{tags} .= "\n" if $require_newline;
 
-    $klass->run($self);
+    # $klass->run($self);
+}
+
+sub write_asset {
+    my ($self, $asset, $base) = @_;
+    $asset || die "Missing asset name";
+    $base ||= 'static/';
+
+    my $klass = Plack::Util::load_class($asset, 'Amon2::Setup::Asset');
+    my $files = $klass->files;
+    while (my ($fname, $content) = each %$files) {
+        $self->write_file_raw("$base/$fname", $content);
+    }
 }
 
 1;

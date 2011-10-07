@@ -11,11 +11,15 @@ sub run {
 
     $self->SUPER::run();
 
-    $self->mkpath('static/img/');
     $self->mkpath('static/js/');
 
     $self->load_asset('jQuery');
     $self->load_asset('Bootstrap');
+
+    $self->write_asset('jQuery');
+    $self->write_asset('Bootstrap');
+
+    $self->write_file('static/img/.gitignore', '');
 
     $self->write_file('lib/<<PATH>>.pm', <<'...');
 package <% $module %>;
@@ -30,16 +34,12 @@ use 5.008001;
 1;
 ...
 
-    $self->write_file('lib/<<PATH>>/Web.pm', <<'...');
+    $self->write_file('lib/<<PATH>>/Web.pm', <<'...', { xslate => $self->create_view() });
 package <% $module %>::Web;
 use strict;
 use warnings;
 use parent qw/<% $module %> Amon2::Web/;
 use File::Spec;
-
-# load all controller classes
-use Module::Find ();
-Module::Find::useall("<% $module %>::Web::C");
 
 # dispatcher
 use <% $module %>::Web::Dispatcher;
@@ -47,37 +47,24 @@ sub dispatch {
     return <% $module %>::Web::Dispatcher->dispatch($_[0]) or die "response is not generated";
 }
 
-# setup view class
-use Text::Xslate;
-{
-    my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || +{};
-    unless (exists $view_conf->{path}) {
-        $view_conf->{path} = [ File::Spec->catdir(__PACKAGE__->base_dir(), 'tmpl') ];
-    }
-    my $view = Text::Xslate->new(+{
-        'syntax'   => 'TTerse',
-        'module'   => [ 'Text::Xslate::Bridge::TT2Like' ],
-        'function' => {
-            c => sub { Amon2->context() },
-            uri_with => sub { Amon2->context()->req->uri_with(@_) },
-            uri_for  => sub { Amon2->context()->uri_for(@_) },
-        },
-        %$view_conf
-    });
-    sub create_view { $view }
-}
+<% $xslate %>
 
 # load plugins
+use File::Path qw(mkpath);
 use HTTP::Session::Store::File;
 __PACKAGE__->load_plugins(
     'Web::FillInFormLite',
     'Web::NoCache', # do not cache the dynamic content by default
     'Web::CSRFDefender',
-    'Web::HTTPSession' => {
-        state => 'Cookie',
-        store => HTTP::Session::Store::File->new(
-            dir => File::Spec->tmpdir(),
-        )
+    'Web::HTTPSession' => do {
+        my $session_dir = File::Spec->catdir(File::Spec->tmpdir(), '<: $path :>');
+        mkpath($session_dir);
+        +{
+            state => 'Cookie',
+            store => HTTP::Session::Store::File->new(
+                dir => $session_dir,
+            )
+        }
     },
 );
 
@@ -252,8 +239,8 @@ any '/' => sub {
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"]]>
     <meta name="format-detection" content="telephone=no" />
     <% $tags %>
-    <link href="[% uri_for('/static/css/main.css') %]" rel="stylesheet" type="text/css" media="screen" />
-    <link href="[% uri_for('/static/js/main.js') %]" rel="stylesheet" type="text/css" media="screen" />
+    <link href="[% static_file('/static/css/main.css') %]" rel="stylesheet" type="text/css" media="screen" />
+    <script src="[% static_file('/static/js/main.js') %]"></script>
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -322,16 +309,6 @@ body {
     margin-top: 50px;
 }
 
-header {
-    height: 50px;
-    font-size: 36px;
-    padding: 2px;
-    text-align: center; }
-    header a {
-        color: black;
-        font-weight: bold;
-        text-decoration: none; }
-
 footer {
     text-align: right;
     padding-right: 10px;
@@ -385,8 +362,7 @@ MANIFEST
 *.old
 nytprof.out
 nytprof/
-development.db
-test.db
+*.db
 blib/
 pm_to_blib
 META.json
@@ -430,10 +406,7 @@ done_testing;
 sub write_status_file {
     my ($self, $fname, $status) = @_;
 
-    local $self->{status}         = $status;
-    local $self->{status_message} = status_message($status);
- 
-    $self->write_file($fname, <<'...');
+    $self->write_file($fname, <<'...', status => $status, status_message => status_message($status));
 <!doctype html> 
 <html> 
     <head> 
