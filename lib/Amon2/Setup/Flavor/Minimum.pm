@@ -1,5 +1,5 @@
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use utf8;
 
 package Amon2::Setup::Flavor::Minimum;
@@ -66,13 +66,9 @@ __PACKAGE__->add_trigger(
 </html>
 ...
 
-    $self->write_file('app.psgi', <<'...');
-use File::Spec;
-use File::Basename;
-use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
-use lib File::Spec->catdir(dirname(__FILE__), 'lib');
+    $self->write_file('app.psgi', <<'...', {header => $self->psgi_header});
+<% header %>
 use <% $module %>::Web;
-use Plack::Builder;
 
 builder {
     enable 'Plack::Middleware::Static',
@@ -82,33 +78,12 @@ builder {
         path => qr{^(?:/robots\.txt|/favicon.ico)$},
         root => File::Spec->catdir(dirname(__FILE__), 'static');
     enable 'Plack::Middleware::ReverseProxy';
+	enable 'Plack::Middleware::Session';
     <% $module %>::Web->to_app();
 };
 ...
 
-    $self->write_file('Makefile.PL', <<'...');
-use ExtUtils::MakeMaker;
-
-WriteMakefile(
-    NAME          => '<% $module %>',
-    AUTHOR        => 'Some Person <person@example.com>',
-    VERSION_FROM  => 'lib/<% $path %>.pm',
-    PREREQ_PM     => {
-        'Amon2'                           => '<% $amon2_version %>',
-        'Text::Xslate'                    => '1.4001',
-        'Text::Xslate::Bridge::TT2Like'   => '0.00008',
-        'Plack::Middleware::ReverseProxy' => '0.09',
-        'HTML::FillInForm::Lite'          => '1.09',
-        'Time::Piece'                     => '1.20',
-    },
-    MIN_PERL_VERSION => '5.008001',
-    (-d 'xt' and $ENV{AUTOMATED_TESTING} || $ENV{RELEASE_TESTING}) ? (
-        test => {
-            TESTS => 't/*.t xt/*.t',
-        },
-    ) : (),
-);
-...
+    $self->create_makefile_pl();
 
     $self->write_file('t/00_compile.t', <<'...');
 use strict;
@@ -121,35 +96,6 @@ use_ok $_ for qw(
 );
 
 done_testing;
-...
-
-    $self->write_file('t/Util.pm', <<'...');
-package <% '' %>t::Util;
-BEGIN {
-    unless ($ENV{PLACK_ENV}) {
-        $ENV{PLACK_ENV} = 'test';
-    }
-}
-use parent qw/Exporter/;
-use Test::More 0.96;
-
-our @EXPORT = qw//;
-
-{
-    # utf8 hack.
-    binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_output/;                       
-    no warnings 'redefine';
-    my $code = \&Test::Builder::child;
-    *Test::Builder::child = sub {
-        my $builder = $code->(@_);
-        binmode $builder->output,         ":utf8";
-        binmode $builder->failure_output, ":utf8";
-        binmode $builder->todo_output,    ":utf8";
-        return $builder;
-    };
-}
-
-1;
 ...
 
     $self->write_file('t/01_root.t', <<'...');
@@ -174,7 +120,23 @@ test_psgi
 done_testing;
 ...
 
-    $self->write_file('t/02_mech.t', <<'...');
+	$self->create_t_02_mech_t();
+
+	$self->create_t_util_pm();
+
+    $self->write_file('xt/03_pod.t', <<'...');
+use Test::More;
+eval "use Test::Pod 1.00";
+plan skip_all => "Test::Pod 1.00 required for testing POD" if $@;
+all_pod_files_ok();
+...
+}
+
+sub create_t_02_mech_t {
+	my ($self, $more) = @_;
+	$more ||= '';
+
+    $self->write_file('t/02_mech.t', <<'...' . $more . "\ndone_testing();\n");
 use strict;
 use warnings;
 use t::Util;
@@ -188,14 +150,6 @@ my $app = Plack::Util::load_psgi 'app.psgi';
 my $mech = Test::WWW::Mechanize::PSGI->new(app => $app);
 $mech->get_ok('/');
 
-done_testing;
-...
-
-    $self->write_file('xt/03_pod.t', <<'...');
-use Test::More;
-eval "use Test::Pod 1.00";
-plan skip_all => "Test::Pod 1.00 required for testing POD" if $@;
-all_pod_files_ok();
 ...
 }
 
@@ -245,6 +199,80 @@ use File::Basename;
 use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Plack::Builder;
+...
+}
+
+sub create_t_util_pm {
+	my ($self, $exports, $more) = @_;
+	$exports ||= [];
+	$more ||= '';
+
+    $self->write_file('t/Util.pm', <<'...' . $more . "\n1;\n", {exports => $exports});
+package <% '' %>t::Util;
+BEGIN {
+    unless ($ENV{PLACK_ENV}) {
+        $ENV{PLACK_ENV} = 'test';
+    }
+	if ($ENV{PLACK_ENV} eq 'deployment') {
+		die "Do not run a test script on deployment environment";
+	}
+}
+use File::Spec;
+use File::Basename;
+use lib File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..', 'extlib', 'lib', 'perl5'));
+use lib File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..', 'lib'));
+use parent qw/Exporter/;
+use Test::More 0.98;
+
+our @EXPORT = qw(<% exports.join(' ') %>);
+
+{
+    # utf8 hack.
+    binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_output/;                       
+    no warnings 'redefine';
+    my $code = \&Test::Builder::child;
+    *Test::Builder::child = sub {
+        my $builder = $code->(@_);
+        binmode $builder->output,         ":utf8";
+        binmode $builder->failure_output, ":utf8";
+        binmode $builder->todo_output,    ":utf8";
+        return $builder;
+    };
+}
+
+...
+
+}
+
+sub create_makefile_pl {
+    my ($self, $deps) = @_;
+
+    $self->write_file('Makefile.PL', <<'...', {deps => $deps});
+use ExtUtils::MakeMaker;
+
+WriteMakefile(
+    NAME          => '<% $module %>',
+    AUTHOR        => 'Some Person <person@example.com>',
+    VERSION_FROM  => 'lib/<% $path %>.pm',
+    PREREQ_PM     => {
+        'Amon2'                           => '<% $amon2_version %>',
+        'Text::Xslate'                    => '1.4001',
+        'Text::Xslate::Bridge::TT2Like'   => '0.00008',
+        'Plack::Middleware::ReverseProxy' => '0.09',
+        'HTML::FillInForm::Lite'          => '1.09',
+        'Time::Piece'                     => '1.20',
+		'Test::More'                      => '0.98',
+<% FOR v IN deps.keys() -%>
+        '<% v %>'                         => '<% deps.item(v) %>',
+<% END -%>
+    },
+    MIN_PERL_VERSION => '5.008001',
+    (-d 'xt' and $ENV{AUTOMATED_TESTING} || $ENV{RELEASE_TESTING}) ? (
+        test => {
+            TESTS => 't/*.t xt/*.t',
+        },
+    ) : (),
+);
 ...
 }
 

@@ -1,11 +1,23 @@
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use utf8;
 
 package Amon2::Setup::Flavor::Large;
 use parent qw(Amon2::Setup::Flavor::Basic);
 use File::Path ();
 use File::Copy::Recursive qw(rmove rcopy);
+
+sub create_makefile_pl {
+    my ($self, $prereq_pm) = @_;
+
+    $self->SUPER::create_makefile_pl(
+        +{
+            %{ $prereq_pm || {} },
+            'String::CamelCase' => '0.02',
+			'Mouse'             => '0.95', # Mouse::Util
+        },
+    );
+}
 
 sub run {
     my $self = shift;
@@ -15,31 +27,47 @@ sub run {
     # restructure static dir
     rmove('static', 'xxx') or die "$!";
     $self->mkpath('static');
-    rmove('xxx', 'static/web') or die "$!";
-    rcopy('static/web', 'static/admin') or die "$!";
+    rmove('xxx', 'static/pc') or die "$!";
+    rcopy('static/pc', 'static/admin') or die "$!";
 
     # restructure tmpl dir
     rmove('tmpl/', 'yyy') or die "$!";
     $self->mkpath('tmpl');
-    rmove('yyy', 'tmpl/web') or die "$!";
-    rcopy('tmpl/web', 'tmpl/admin') or die "$!";
+    rmove('yyy', 'tmpl/pc') or die "$!";
+    rcopy('tmpl/pc', 'tmpl/admin') or die "$!";
+
+    unlink 'static/admin/css/main.css' or die $!;
 
     $self->write_file('app.psgi', <<'...', {header => $self->psgi_header});
 <% $header %>
-use <% $module %>::Web;
+use <% $module %>::PC;
 use Plack::App::File;
 use Plack::Util;
+use Plack::Session::Store::DBI;
+use DBI;
 
 my $basedir = File::Spec->rel2abs(dirname(__FILE__));
+my $db_config = <% $module %>->config->{DBI} || die "Missing configuration for DBI";
+{
+    my $c = <% $module %>->new();
+    $c->setup_schema();
+}
 builder {
     enable 'Plack::Middleware::Static',
         path => qr{^(?:/robots\.txt|/favicon.ico)$},
-        root => File::Spec->catdir(dirname(__FILE__), 'static', 'web');
+        root => File::Spec->catdir(dirname(__FILE__), 'static', 'pc');
     enable 'Plack::Middleware::ReverseProxy';
+	enable 'Plack::Middleware::Session',
+        store => Plack::Session::Store::DBI->new(
+            get_dbh => sub {
+                DBI->connect( @$db_config )
+                    or die $DBI::errstr;
+            }
+        );
 
     mount '/admin/' => Plack::Util::load_psgi('admin.psgi');
-    mount '/static/' => Plack::App::File->new(root => File::Spec->catdir($basedir, 'static', 'web'));
-    mount '/' => <% $module %>::Web->to_app();
+    mount '/static/' => Plack::App::File->new(root => File::Spec->catdir($basedir, 'static', 'pc'));
+    mount '/' => <% $module %>::PC->to_app();
 };
 ...
 
@@ -47,8 +75,15 @@ builder {
 <% $header %>
 use <% $module %>::Admin;
 use Plack::App::File;
+use Plack::Session::Store::DBI;
+use DBI;
 
 my $basedir = File::Spec->rel2abs(dirname(__FILE__));
+my $db_config = <% $module %>->config->{DBI} || die "Missing configuration for DBI";
+{
+    my $c = <% $module %>->new();
+    $c->setup_schema();
+}
 builder {
     enable 'Plack::Middleware::Auth::Basic',
         authenticator => sub { $_[0] eq 'admin' && $_[1] eq 'admin' };
@@ -56,13 +91,20 @@ builder {
         path => qr{^(?:/robots\.txt|/favicon.ico)$},
         root => File::Spec->catdir(dirname(__FILE__), 'static', 'adin');
     enable 'Plack::Middleware::ReverseProxy';
+	enable 'Plack::Middleware::Session',
+        store => Plack::Session::Store::DBI->new(
+            get_dbh => sub {
+                DBI->connect( @$db_config )
+                    or die $DBI::errstr;
+            }
+        );
 
     mount '/static/' => Plack::App::File->new(root => File::Spec->catdir($basedir, 'static', 'admin'));
     mount '/' => <% $module %>::Admin->to_app();
 };
 ...
 
-    for my $moniker (qw(Web Admin)) {
+    for my $moniker (qw(PC Admin)) {
         $self->write_file("lib/<<PATH>>/${moniker}.pm", <<'...', { xslate => $self->create_view(tmpl_path => 'tmpl/' . lc($moniker)), moniker => $moniker });
 package <% $module %>::<% $moniker %>;
 use strict;
@@ -81,21 +123,10 @@ sub dispatch {
 
 # load plugins
 use File::Path qw(mkpath);
-use HTTP::Session::Store::File;
 __PACKAGE__->load_plugins(
     'Web::FillInFormLite',
     'Web::NoCache', # do not cache the dynamic content by default
     'Web::CSRFDefender',
-    'Web::HTTPSession' => do {
-        my $session_dir = File::Spec->catdir(File::Spec->tmpdir(), '<% $path %>');
-        mkpath($session_dir);
-        +{
-            state => 'Cookie',
-            store => HTTP::Session::Store::File->new(
-                dir => $session_dir
-            ),
-        }
-    },
 );
 
 # for your security
@@ -112,12 +143,50 @@ __PACKAGE__->add_trigger(
 package <% $module %>::<% $moniker %>::Dispatcher;
 use strict;
 use warnings;
-use Amon2::Web::Dispatcher::RouterSimple;
+use Router::Simple::Declare;
+use Mouse::Util qw(get_code_package);
+use Module::Find ();
+use String::CamelCase qw(decamelize);
 
-use Module::Find;
-Module::Find::useall('<% $module %>::<% $moniker %>::C');
+# define roots here.
+my $router = router {
+	connect '/' => {controller => 'Root', action => 'index' };
+};
 
-connect '/' => {controller => 'Root', action => 'index' };
+my @controllers = Module::Find::useall('<% $module %>::<% $moniker %>::C');
+{
+    no strict 'refs';
+    for my $controller (@controllers) {
+        my $p0 = $controller;
+        $p0 =~ s/^<% $module %>::<% $moniker %>::C:://;
+        my $p1 = decamelize($p0);
+        next if $p0 eq 'Root';
+
+        for my $method (sort keys %{"${controller}::"}) {
+            next if $method =~ /(?:^_|^BEGIN$|^import$)/;
+            my $code = *{"${controller}::${method}"}{CODE};
+            next unless $code;
+            next if get_code_package($code) ne $controller;
+            $router->connect("/$p1/$method" => {
+                controller => $p0,
+                action     => $method,
+            });
+            print STDERR "map: /$p1/$method => ${p0}::${method}\n" unless $ENV{HARNESS_ACTIVE};
+        }
+    }
+}
+
+sub dispatch {
+    my ($class, $c) = @_;
+    my $req = $c->request;
+    if (my $p = $router->match($req->env)) {
+        my $action = $p->{action};
+        $c->{args} = $p;
+        "@{[ ref Amon2->context ]}::C::$p->{controller}"->$action($c, $p);
+    } else {
+        $c->res_404();
+    }
+}
 
 1;
 ...
@@ -135,7 +204,23 @@ sub index {
 
 1;
 ...
+
     }
+
+	$self->write_file("lib/<<PATH>>/PC/C/Account.pm", <<'...');
+package <% $module %>::PC::C::Account;
+use strict;
+use warnings;
+use utf8;
+
+sub logout {
+    my ($class, $c) = @_;
+	$c->session->expire();
+	$c->redirect('/');
+}
+
+1;
+...
 
     $self->write_file('tmpl/admin/index.tt', <<'...');
 [% WRAPPER 'include/layout.tt' %]
@@ -159,7 +244,7 @@ sub index {
     <meta name="format-detection" content="telephone=no" />
     <link href="[% static_file('../static/bootstrap/bootstrap.min.css') %]" rel="stylesheet" type="text/css" />
     <script src="[% static_file('../static/js/jquery-1.6.4.min.js') %]"></script>
-    <link href="[% static_file('/static/css/main.css') %]" rel="stylesheet" type="text/css" media="screen" />
+    <link href="[% static_file('/static/css/admin.css') %]" rel="stylesheet" type="text/css" media="screen" />
     <script src="[% static_file('/static/js/main.js') %]"></script>
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -192,7 +277,7 @@ sub index {
 </html>
 ...
 
-    $self->write_file('static/admin/css/main.css', <<'...', {color1 => '#117711', color2 => '#119911'});
+    $self->write_file('static/admin/css/admin.css', <<'...', {color1 => '#117711', color2 => '#119911'});
 body {
     margin-top: 50px;
 }
@@ -241,9 +326,10 @@ use Test::More;
 
 use_ok $_ for qw(
     <% $module %>
-    <% $module %>::Web
-    <% $module %>::Web::Dispatcher
-    <% $module %>::Web::C::Root
+    <% $module %>::PC
+    <% $module %>::PC::Dispatcher
+    <% $module %>::PC::C::Root
+    <% $module %>::PC::C::Account
     <% $module %>::Admin
     <% $module %>::Admin::Dispatcher
     <% $module %>::Admin::C::Root

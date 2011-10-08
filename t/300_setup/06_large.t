@@ -3,6 +3,12 @@ use warnings;
 use utf8;
 use Test::More;
 use t::TestFlavor;
+use Test::Requires {
+	'String::CamelCase' => '0.02',
+	'Mouse'             => '0.95', # Mouse::Util
+	'Amon2::DBI'                      => '0.05',
+	'DBD::SQLite'                     => '1.33',
+};
 
 test_flavor(sub {
     ok(!-e 'xxx');
@@ -10,10 +16,12 @@ test_flavor(sub {
     my @files = (<Amon2::*>);
     is(0+@files, 0);
 
-    for my $dir (qw(tmpl/ tmpl/web tmpl/admin/)) {
+    for my $dir (qw(tmpl/ tmpl/pc tmpl/admin/ static/pc static/admin)) {
         ok(-d $dir, $dir);
     }
-    ok(-f 'lib/My/App.pm', 'lib/My/App.pm exists');
+	for my $file (qw(Makefile.PL lib/My/App.pm t/Util.pm .proverc)) {
+		ok(-f $file, "$file exists");
+	}
     ok((do 'lib/My/App.pm'), 'lib/My/App.pm is valid') or do {
         diag $@;
         diag do {

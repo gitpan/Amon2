@@ -42,12 +42,6 @@ __PACKAGE__->add_trigger(
 use HTTP::Session::Store::File;
 __PACKAGE__->load_plugins(
     'Web::CSRFDefender',
-    'Web::HTTPSession' => {
-        state => 'Cookie',
-        store => HTTP::Session::Store::File->new(
-            dir => File::Spec->tmpdir(),
-        )
-    },
 );
 
 builder {
@@ -55,6 +49,7 @@ builder {
         path => qr{^(?:/static/|/robot\.txt$|/favicon.ico$)},
         root => File::Spec->catdir(dirname(__FILE__));
     enable 'Plack::Middleware::ReverseProxy';
+	enable 'Plack::Middleware::Session';
 
     __PACKAGE__->to_app();
 };
