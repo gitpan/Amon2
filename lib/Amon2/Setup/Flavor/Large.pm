@@ -38,7 +38,7 @@ sub run {
 
     unlink 'static/admin/css/main.css' or die $!;
 
-    $self->write_file('app.psgi', <<'...', {header => $self->psgi_header});
+    $self->write_file('pc.psgi', <<'...', {header => $self->psgi_header});
 <% $header %>
 use <% $module %>::PC;
 use Plack::App::File;
@@ -65,9 +65,20 @@ builder {
             }
         );
 
-    mount '/admin/' => Plack::Util::load_psgi('admin.psgi');
     mount '/static/' => Plack::App::File->new(root => File::Spec->catdir($basedir, 'static', 'pc'));
     mount '/' => <% $module %>::PC->to_app();
+};
+...
+
+    $self->write_file('app.psgi', <<'...', {header => $self->psgi_header});
+<% $header %>
+use <% $module %>::PC;
+use Plack::Util;
+use Plack::Builder;
+
+builder {
+    mount '/admin/' => Plack::Util::load_psgi('admin.psgi');
+    mount '/' => Plack::Util::load_psgi('pc.psgi');
 };
 ...
 
@@ -150,7 +161,7 @@ use String::CamelCase qw(decamelize);
 
 # define roots here.
 my $router = router {
-	connect '/' => {controller => 'Root', action => 'index' };
+	# connect '/' => {controller => 'Root', action => 'index' };
 };
 
 my @controllers = Module::Find::useall('<% $module %>::<% $moniker %>::C');
@@ -159,19 +170,20 @@ my @controllers = Module::Find::useall('<% $module %>::<% $moniker %>::C');
     for my $controller (@controllers) {
         my $p0 = $controller;
         $p0 =~ s/^<% $module %>::<% $moniker %>::C:://;
-        my $p1 = decamelize($p0);
-        next if $p0 eq 'Root';
+        my $p1 = $p0 eq 'Root' ? '' : decamelize($p0) . '/';
 
         for my $method (sort keys %{"${controller}::"}) {
             next if $method =~ /(?:^_|^BEGIN$|^import$)/;
             my $code = *{"${controller}::${method}"}{CODE};
             next unless $code;
             next if get_code_package($code) ne $controller;
-            $router->connect("/$p1/$method" => {
+			my $p2 = $method eq 'index' ? '' : $method;
+			my $path = "/$p1$p2";
+            $router->connect($path => {
                 controller => $p0,
                 action     => $method,
             });
-            print STDERR "map: /$p1/$method => ${p0}::${method}\n" unless $ENV{HARNESS_ACTIVE};
+            print STDERR "map: $path => ${p0}::${method}\n" unless $ENV{HARNESS_ACTIVE};
         }
     }
 }
