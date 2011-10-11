@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 1.01'
+generated_by: 'Module::Install version 1.02'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,16 +29,16 @@ recommends:
   Test::WWW::Mechanize::PSGI: 0
 requires:
   Data::OptList: 0.106
-  Data::Section::Simple: 0
+  Data::Section::Simple: 0.03
   Exporter: 5.64
-  File::Copy::Recursive: 0
+  File::Copy::Recursive: 0.38
   HTML::FillInForm::Lite: 1.09
-  HTTP::Date: 6
+  HTTP::Date: 6.00
   JSON: 2
-  MRO::Compat: 0
-  Module::Find: 0.1
+  MRO::Compat: 0.11
+  Module::Find: 0.10
   Plack: 0.9982
-  Plack::Middleware::ReverseProxy: 0
+  Plack::Middleware::ReverseProxy: 0.10
   Plack::Session: 0.14
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
@@ -53,4 +53,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.03
+version: 3.04
