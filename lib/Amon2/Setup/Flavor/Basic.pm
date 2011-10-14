@@ -130,7 +130,7 @@ any '/' => sub {
     $c->render('index.tt');
 };
 
-get '/account/logout' => sub {
+post '/account/logout' => sub {
     my ($c) = @_;
     $c->session->expire();
     $c->redirect('/');
@@ -520,9 +520,19 @@ sub create_makefile_pl {
     $self->SUPER::create_makefile_pl(
         +{
             %{ $prereq_pm || {} },
+			'HTML::FillInForm::Lite'          => '1.09',
+			'Time::Piece'                     => '1.20',
             'Plack::Session' => '0.14',
             'Amon2::DBI'     => '0.05',
             'DBD::SQLite'    => '1.33',
+			'Plack::Middleware::Session' => 0,
+			'Plack::Middleware::ReverseProxy' => '0.09',
+			'JSON'                            => '2.50',
+			'String::CamelCase' => '0.02',
+			'Amon2::DBI' => '0.06',
+			'DBD::SQLite' => '1.33',
+			'Log::Minimal' => '0.06',
+			'Test::WWW::Mechanize::PSGI' => 0,
         },
     );
 }
@@ -531,7 +541,6 @@ sub create_t_02_mech_t {
     my ($self, $more) = @_;
     $more ||= '';
     $self->SUPER::create_t_02_mech_t(<<'...' . $more);
-$mech->get_ok('/account/logout');
 ...
 }
 
