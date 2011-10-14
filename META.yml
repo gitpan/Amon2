@@ -30,6 +30,7 @@ requires:
   MRO::Compat: 0.11
   Module::Find: 0.10
   Plack: 0.9982
+  Plack::Session: 0
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
   Test::More: 0.98
@@ -43,4 +44,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.05
+version: 3.06
