@@ -145,6 +145,7 @@ __PACKAGE__->add_trigger(
     AFTER_DISPATCH => sub {
         my ( $c, $res ) = @_;
         $res->header( 'X-Content-Type-Options' => 'nosniff' );
+        $res->header( 'X-Frame-Options' => 'DENY' );
     },
 );
 
@@ -154,6 +155,7 @@ __PACKAGE__->add_trigger(
 package <% $module %>::<% $moniker %>::Dispatcher;
 use strict;
 use warnings;
+use utf8;
 use Router::Simple::Declare;
 use Mouse::Util qw(get_code_package);
 use Module::Find ();
@@ -351,6 +353,7 @@ done_testing;
     $self->write_file('t/04_admin.t', <<'...');
 use strict;
 use warnings;
+use utf8;
 use t::Util;
 use Plack::Test;
 use Plack::Util;
