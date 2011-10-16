@@ -56,6 +56,7 @@ lib/Amon2/Setup/Flavor/DotCloud.pm
 lib/Amon2/Setup/Flavor/Large.pm
 lib/Amon2/Setup/Flavor/Lite.pm
 lib/Amon2/Setup/Flavor/Minimum.pm
+lib/Amon2/Setup/VC/Git.pm
 lib/Amon2/Trigger.pm
 lib/Amon2/Util.pm
 lib/Amon2/Web.pm

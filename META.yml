@@ -26,6 +26,7 @@ requires:
   Data::Section::Simple: 0.03
   Exporter: 5.64
   File::Copy::Recursive: 0.38
+  File::Which: 0
   HTTP::Date: 6.00
   MRO::Compat: 0.11
   Module::Find: 0.10
@@ -44,4 +45,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.09
+version: 3.10
