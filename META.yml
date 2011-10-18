@@ -4,7 +4,7 @@ author:
   - 'Tokuhiro Matsuno'
 build_requires:
   ExtUtils::MakeMaker: 6.42
-  Test::Requires: 0
+  Test::Requires: 0.06
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
@@ -45,4 +45,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.11
+version: 3.12
