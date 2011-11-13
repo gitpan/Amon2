@@ -16,7 +16,7 @@ my $xslate = Text::Xslate->new(
     type   => 'text',
     tag_start => '<%',
     tag_end   => '%>',
-    'module'   => [ 'Text::Xslate::Bridge::TT2Like' ],
+    'module'   => [ 'Text::Xslate::Bridge::Star' ],
 );
 
 sub infof {
@@ -89,7 +89,7 @@ sub write_file_raw {
     my $dirname = dirname($filename);
     File::Path::mkpath($dirname) if $dirname;
 
-    open my $ofh, '>:utf8', $filename or die "Cannot open file: $filename: $!";
+    open my $ofh, '>:encoding(utf-8)', $filename or die "Cannot open file: $filename: $!";
     print {$ofh} $content;
     close $ofh;
 }

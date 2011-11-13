@@ -8,25 +8,20 @@ license 'perl';
 requires(
     'Plack'         => 0.9982,   # sanity check to remove newlines from headers
     'Try::Tiny'     => 0.06,
-    'Test::More'    => 0.98,     # 0.98 or later is required for better testing.
     'Exporter'      => 5.64,
     'parent'        => 0.223,
-    'Module::Find'  => '0.10',
     'URI'           => 1.54,
-    'URI::Escape'   => 3.30,
-    'Data::OptList' => 0.106,
-    'MRO::Compat'   => '0.11',
 	'Data::Section::Simple' => '0.03', # for ::Lite
-	'HTTP::Date'                      => '6.00',
 	'File::Copy::Recursive' => '0.38',
 	'Plack::Session' => 0, # required in Amon2::Web
-	'File::Which' => 0,
+	'File::Which' => 0, # VC::Git
 );
+
+requires( 'MRO::Compat' => '0.11' ) if $] < 5.009_005;
 
 # Not core, but default components.
 requires(
-    'Text::Xslate'                  => 1.4001,
-    'Text::Xslate::Bridge::TT2Like' => '0.00010',
+    'Text::Xslate'                  => 1.5006,
     'Router::Simple'             => 0.06,
     'Router::Simple::Sinatraish' => 0.02,
 );
@@ -34,6 +29,7 @@ requires(
 # Optional components
 
 test_requires 'Test::Requires' => 0.06;
+test_requires 'Test::More'     => 0.98;     # 0.98 or later is required for better testing.
 
 tests 't/*.t t/*/*.t t/*/*/*.t';
 recursive_author_tests('xt');

@@ -4,6 +4,7 @@ author:
   - 'Tokuhiro Matsuno'
 build_requires:
   ExtUtils::MakeMaker: 6.42
+  Test::More: 0.98
   Test::Requires: 0.06
 configure_requires:
   ExtUtils::MakeMaker: 6.42
@@ -23,27 +24,20 @@ no_index:
     - t
     - xt
 requires:
-  Data::OptList: 0.106
   Data::Section::Simple: 0.03
   Exporter: 5.64
   File::Copy::Recursive: 0.38
   File::Which: 0
-  HTTP::Date: 6.00
-  MRO::Compat: 0.11
-  Module::Find: 0.10
   Plack: 0.9982
   Plack::Session: 0
   Router::Simple: 0.06
   Router::Simple::Sinatraish: 0.02
-  Test::More: 0.98
-  Text::Xslate: 1.4001
-  Text::Xslate::Bridge::TT2Like: 0.00010
+  Text::Xslate: 1.5006
   Try::Tiny: 0.06
   URI: 1.54
-  URI::Escape: 3.3
   parent: 0.223
   perl: 5.8.1
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.22
+version: 3.24
