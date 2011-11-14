@@ -8,13 +8,11 @@ license 'perl';
 requires(
     'Plack'         => 0.9982,   # sanity check to remove newlines from headers
     'Try::Tiny'     => 0.06,
-    'Exporter'      => 5.64,
+    'Exporter'      => 0,
     'parent'        => 0.223,
     'URI'           => 1.54,
-	'Data::Section::Simple' => '0.03', # for ::Lite
 	'File::Copy::Recursive' => '0.38',
 	'Plack::Session' => 0, # required in Amon2::Web
-	'File::Which' => 0, # VC::Git
 );
 
 requires( 'MRO::Compat' => '0.11' ) if $] < 5.009_005;

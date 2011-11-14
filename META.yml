@@ -24,10 +24,8 @@ no_index:
     - t
     - xt
 requires:
-  Data::Section::Simple: 0.03
-  Exporter: 5.64
+  Exporter: 0
   File::Copy::Recursive: 0.38
-  File::Which: 0
   Plack: 0.9982
   Plack::Session: 0
   Router::Simple: 0.06
@@ -40,4 +38,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.24
+version: 3.25

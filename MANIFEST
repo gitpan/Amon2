@@ -40,7 +40,6 @@ inc/Module/Install/WriteAll.pm
 lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
 lib/Amon2/Declare.pm
-lib/Amon2/Lite.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
 lib/Amon2/Plugin/Web/HTTPSession.pm
@@ -54,7 +53,6 @@ lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
 lib/Amon2/Setup/Flavor/DotCloud.pm
 lib/Amon2/Setup/Flavor/Large.pm
-lib/Amon2/Setup/Flavor/Lite.pm
 lib/Amon2/Setup/Flavor/Minimum.pm
 lib/Amon2/Setup/VC/Git.pm
 lib/Amon2/Trigger.pm
@@ -86,14 +84,8 @@ t/200_app/02_deepnamespace.t
 t/300_setup/01_minimum.t
 t/300_setup/02_basic.t
 t/300_setup/03_asset.t
-t/300_setup/04_lite.t
 t/300_setup/05_dotcloud.t
 t/300_setup/06_large.t
-t/400_lite/01_simple.t
-t/400_lite/02_plugin.psgi
-t/400_lite/02_plugin.t
-t/400_lite/03_kolon.t
-t/400_lite/04_tmt.t
 t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t
 t/600_plugins/007_json.t
