@@ -90,6 +90,7 @@ t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t
 t/600_plugins/007_json.t
 t/600_plugins/007_json_default_encoding.t
+t/600_plugins/007_json_hijacking.t
 t/600_plugins/008_no_cache.t
 t/600_plugins/009_csrf_defender.t
 t/600_plugins/010_plack_session.t
