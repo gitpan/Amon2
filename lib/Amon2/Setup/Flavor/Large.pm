@@ -136,6 +136,26 @@ sub logout {
 1;
 ...
 
+    $self->write_file('tmpl/admin/error.tt', <<'...');
+[% WRAPPER 'include/layout.tt' %]
+
+<div class="alert-message error">
+    An error occurred : [% message %]
+</div>
+
+[% END %]
+...
+
+    $self->write_file('tmpl/pc/error.tt', <<'...');
+[% WRAPPER 'include/layout.tt' %]
+
+<div class="alert-message error">
+    An error occurred : [% message %]
+</div>
+
+[% END %]
+...
+
     $self->write_file('tmpl/admin/index.tt', <<'...');
 [% WRAPPER 'include/layout.tt' %]
 
@@ -331,11 +351,17 @@ sub dispatch {
 <% $xslate %>
 
 # load plugins
-use File::Path qw(mkpath);
 __PACKAGE__->load_plugins(
     'Web::FillInFormLite',
     'Web::CSRFDefender',
 );
+
+sub show_error {
+    my ( $c, $msg, $code ) = @_;
+    my $res = $c->render( 'error.tt', { message => $msg } );
+    $res->code( $code || 500 );
+    return $res;
+}
 
 # for your security
 __PACKAGE__->add_trigger(
