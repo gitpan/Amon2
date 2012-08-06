@@ -48,7 +48,11 @@ lib/Amon2/Plugin/Web/NoCache.pm
 lib/Amon2/Plugin/Web/PlackSession.pm
 lib/Amon2/Setup/Asset/Blueprint.pm
 lib/Amon2/Setup/Asset/Bootstrap.pm
+lib/Amon2/Setup/Asset/ES5Shim.pm
 lib/Amon2/Setup/Asset/jQuery.pm
+lib/Amon2/Setup/Asset/MicroTemplateJS.pm
+lib/Amon2/Setup/Asset/SprintfJS.pm
+lib/Amon2/Setup/Asset/StrftimeJS.pm
 lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
 lib/Amon2/Setup/Flavor/DotCloud.pm
