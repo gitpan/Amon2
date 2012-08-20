@@ -5,11 +5,16 @@ use utf8;
 package Amon2::Setup::Flavor::Basic;
 use parent qw(Amon2::Setup::Flavor::Minimum);
 
+my @ASSETS = qw/
+    jQuery Bootstrap ES5Shim MicroTemplateJS StrftimeJS SprintfJS SprintfJS
+    MicroLocationJS
+/;
+
 sub write_static_files {
     my ($self, $base) = @_;
     $base ||= 'static';
 
-    for my $asset (qw(jQuery Bootstrap ES5Shim MicroTemplateJS StrftimeJS SprintfJS SprintfJS)) {
+    for my $asset (@ASSETS) {
         $self->write_asset($asset, $base);
     }
 
@@ -18,6 +23,8 @@ sub write_static_files {
     $self->write_file("$base/robots.txt", '');
 
     $self->write_file("$base/js/main.js", <<'...');
+if (typeof(window.console) == "undefined") { console = {}; console.log = console.warn = console.error = function(a) {}; }
+
 $(function () {
     $('#topbar').dropdown();
 });
@@ -208,12 +215,9 @@ sub write_templates {
 sub run {
     my $self = shift;
 
-    $self->load_asset('jQuery');
-    $self->load_asset('Bootstrap');
-    $self->load_asset('ES5Shim');
-    $self->load_asset('MicroTemplateJS');
-    $self->load_asset('StrftimeJS');
-    $self->load_asset('SprintfJS');
+    for (@ASSETS) {
+        $self->load_asset($_);
+    }
 
     $self->SUPER::run();
 
