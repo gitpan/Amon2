@@ -62,7 +62,6 @@ lib/Amon2/Setup/Asset/SprintfJS.pm
 lib/Amon2/Setup/Asset/StrftimeJS.pm
 lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
-lib/Amon2/Setup/Flavor/DotCloud.pm
 lib/Amon2/Setup/Flavor/Large.pm
 lib/Amon2/Setup/Flavor/Minimum.pm
 lib/Amon2/Setup/VC/Git.pm
@@ -97,7 +96,6 @@ t/200_app/02_deepnamespace.t
 t/300_setup/01_minimum.t
 t/300_setup/02_basic.t
 t/300_setup/03_asset.t
-t/300_setup/05_dotcloud.t
 t/300_setup/06_large.t
 t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t

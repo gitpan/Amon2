@@ -301,17 +301,10 @@ sub setup_schema {
 use File::Spec;
 use File::Basename qw(dirname);
 my $basedir = File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..'));
-my $dbpath;
-if ( -d '/home/dotcloud/') {
-    $dbpath = "/home/dotcloud/<% $env %>.db";
-} else {
-    $dbpath = File::Spec->catfile($basedir, 'db', '<% $env %>.db');
-}
+my $dbpath = File::Spec->catfile($basedir, 'db', '<% $env %>.db');
 +{
     'DBI' => [
-        "dbi:SQLite:dbname=$dbpath",
-        '',
-        '',
+        "dbi:SQLite:dbname=$dbpath", '', '',
         +{
             sqlite_unicode => 1,
         }
@@ -584,12 +577,11 @@ sub create_makefile_pl {
             'HTML::FillInForm::Lite'          => '1.09',
             'Time::Piece'                     => '1.20',
             'Plack::Session'                  => '0.14',
-            'Amon2::DBI'                      => '0.05',
             'DBD::SQLite'                     => '1.33',
             'Plack::Middleware::Session'      => 0,
             'Plack::Middleware::ReverseProxy' => '0.09',
             'JSON'                            => '2.50',
-            'Amon2::DBI'                      => '0.06',
+            'Amon2::DBI'                      => '0.30',
             'DBD::SQLite'                     => '1.33',
             'Test::WWW::Mechanize::PSGI'      => 0,
         },
