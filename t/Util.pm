@@ -18,11 +18,11 @@ sub run_app_test {
 
     my $libpath = File::Spec->rel2abs(File::Spec->catfile(dirname(__FILE__), '..', 'lib'));
 
-    chdir "t/apps/$name/" or die $!;
+    chdir "eg/apps/$name/" or die $!;
 
     my $app = App::Prove->new();
-    $app->process_args('-Ilib', "-I$libpath", <t/*.t>);
-    ok($app->run);
+    $app->process_args('--norc', '-Ilib', "-I$libpath", <t/*.t>);
+    ok($app->run, 'all tests ok');
     done_testing;
 }
 
