@@ -107,6 +107,7 @@ t/00_compile.t
 t/100_core/001_request_param_decoded.t
 t/100_core/002_response.t
 t/100_core/003_redirect.t
+t/100_core/004_web_to_app_leak.t
 t/100_core/005_trigger.t
 t/100_core/008_request_uri_with.t
 t/100_core/009_uri_for.t
@@ -115,6 +116,7 @@ t/100_core/011_random_string.t
 t/100_core/012_trigger_controller.t
 t/100_core/013_tiffany.t
 t/100_core/014_load_plugins.t
+t/100_core/015_debug_mode.t
 t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
 t/300_setup/01_minimum.t

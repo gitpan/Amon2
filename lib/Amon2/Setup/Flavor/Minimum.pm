@@ -141,7 +141,7 @@ sub create_view {
 
     $self->render_string(<<'...', @_);
 # setup view class
-use Text::Xslate;
+use Text::Xslate 1.0006;
 {
     my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || +{};
     unless (exists $view_conf->{path}) {
@@ -167,6 +167,11 @@ use Text::Xslate;
                 }
             },
         },
+        (__PACKAGE__->debug_mode ? ( warn_handler => sub {
+            Text::Xslate->print( # print method escape html automatically
+                '[[', @_, ']]', 
+            );
+        } ) : () ),
         %$view_conf
     });
     sub create_view { $view }
@@ -271,7 +276,7 @@ my $build = Module::Build->subclass(
     requires             => {
         perl => '5.008001',
         'Amon2'                           => '<% $amon2_version %>',
-        'Text::Xslate'                    => '1.5006',
+        'Text::Xslate'                    => '1.6001',
 <% FOR v IN deps.keys() -%>
         <% sprintf("%-33s", "'" _ v _ "'") %> => '<% deps[v] %>',
 <% END -%>

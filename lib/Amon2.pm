@@ -7,7 +7,7 @@ use Plack::Util ();
 use Carp ();
 use Amon2::Config::Simple;
 
-our $VERSION = '3.63';
+our $VERSION = '3.64';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -48,6 +48,8 @@ sub config {
 }
 
 sub mode_name { $ENV{PLACK_ENV} }
+
+sub debug_mode { $ENV{AMON2_DEBUG} ? 1 : 0 }
 
 sub add_config {
     my ($class, $key, $hash) = @_; $hash or Carp::croak("missing args: \$hash");
@@ -171,6 +173,14 @@ You can get a configuration hashref from C<< config/$ENV{PLACK_ENV}.pl >>. You c
 =item C<< MyApp->add_config() >>
 
 DEPRECATED.
+
+=item C<< MyApp->debug_mode() >>
+
+B<((EXPERIMENTAL))>
+
+This method returns boolean value. It returns true when $ENV{AMON2_DEBUG} is true value, false otherwise.
+
+You can override this method if you need.
 
 =back
 

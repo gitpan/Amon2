@@ -40,7 +40,7 @@
             "Plack::Session" : "0",
             "Router::Simple" : "0.06",
             "Router::Simple::Sinatraish" : "0.02",
-            "Text::Xslate" : "1.5006",
+            "Text::Xslate" : "1.6001",
             "Try::Tiny" : "0.06",
             "URI" : "1.54",
             "parent" : "0.223",
@@ -51,7 +51,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.63"
+         "version" : "3.64"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm",
@@ -192,5 +192,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "3.63"
+   "version" : "3.64"
 }

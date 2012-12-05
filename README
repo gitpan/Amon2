@@ -74,6 +74,14 @@ CLASS METHODS for inherited class
     "MyApp->add_config()"
         DEPRECATED.
 
+    "MyApp->debug_mode()"
+        ((EXPERIMENTAL))
+
+        This method returns boolean value. It returns true when
+        $ENV{AMON2_DEBUG} is true value, false otherwise.
+
+        You can override this method if you need.
+
 DOCUMENTS
     More complicated documents are available on <http://amon.64p.org/>
 
