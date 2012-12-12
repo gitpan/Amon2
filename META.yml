@@ -23,7 +23,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.64
+    version: 3.65
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
     version: 0
@@ -127,7 +127,7 @@ requires:
   Exporter: 0
   Plack: 0.9982
   Plack::Session: 0
-  Router::Simple: 0.06
+  Router::Simple: 0.14
   Router::Simple::Sinatraish: 0.02
   Text::Xslate: 1.6001
   Try::Tiny: 0.06
@@ -136,4 +136,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.64
+version: 3.65
