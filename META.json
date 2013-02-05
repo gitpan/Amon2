@@ -51,7 +51,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.66"
+         "version" : "3.68"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm",
@@ -107,6 +107,10 @@
       },
       "Amon2::Setup::Asset::ES5Shim" : {
          "file" : "lib/Amon2/Setup/Asset/ES5Shim.pm",
+         "version" : 0
+      },
+      "Amon2::Setup::Asset::MicroDispatcherJS" : {
+         "file" : "lib/Amon2/Setup/Asset/MicroDispatcherJS.pm",
          "version" : 0
       },
       "Amon2::Setup::Asset::MicroLocationJS" : {
@@ -192,5 +196,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "3.66"
+   "version" : "3.68"
 }

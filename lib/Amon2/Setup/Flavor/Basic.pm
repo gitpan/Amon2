@@ -7,7 +7,7 @@ use parent qw(Amon2::Setup::Flavor::Minimum);
 
 my @ASSETS = qw/
     jQuery Bootstrap ES5Shim MicroTemplateJS StrftimeJS SprintfJS
-    MicroLocationJS
+    MicroLocationJS MicroDispatcherJS
 /;
 
 sub write_static_files {
@@ -631,7 +631,7 @@ __END__
 
 =head1 NAME
 
-Amon2::Setup::Flavor::Basic - Basic flavor for Amon2
+Amon2::Setup::Flavor::Basic - Basic flavor selected by default
 
 =head1 SYNOPSIS
 
@@ -639,7 +639,7 @@ Amon2::Setup::Flavor::Basic - Basic flavor for Amon2
 
 =head1 DESCRIPTION
 
-This is a basic flavor for Amon2. This is a default flavor.
+This is a basic flavor for Amon2. This is the default flavor.
 
 =head1 AUTHOR
 

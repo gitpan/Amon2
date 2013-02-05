@@ -79,6 +79,7 @@ lib/Amon2/Setup/Asset/Blueprint.pm
 lib/Amon2/Setup/Asset/Bootstrap.pm
 lib/Amon2/Setup/Asset/ES5Shim.pm
 lib/Amon2/Setup/Asset/jQuery.pm
+lib/Amon2/Setup/Asset/MicroDispatcherJS.pm
 lib/Amon2/Setup/Asset/MicroLocationJS.pm
 lib/Amon2/Setup/Asset/MicroTemplateJS.pm
 lib/Amon2/Setup/Asset/SprintfJS.pm
@@ -134,6 +135,7 @@ t/600_plugins/010_plack_session.t
 t/600_plugins/011_csrf_defender_manual.t
 t/600_plugins/012_streaming.t
 t/600_plugins/013_websocket.t
+t/600_plugins/014_csrf_defender_post_only.t
 t/800_dispatcher/002_router_simple.t
 t/800_dispatcher/003_lite.t
 t/TestFlavor.pm
