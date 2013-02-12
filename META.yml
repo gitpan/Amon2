@@ -23,7 +23,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.69
+    version: 3.70
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
     version: 0
@@ -139,4 +139,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.69
+version: 3.70
