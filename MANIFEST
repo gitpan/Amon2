@@ -68,7 +68,6 @@ lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
 lib/Amon2/ContextGuard.pm
 lib/Amon2/Declare.pm
-lib/Amon2/LocalContext.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
 lib/Amon2/Plugin/Web/HTTPSession.pm
