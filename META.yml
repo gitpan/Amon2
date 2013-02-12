@@ -23,12 +23,18 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.70
+    version: 3.71
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
     version: 0
+  Amon2::ContextGuard:
+    file: lib/Amon2/ContextGuard.pm
+    version: 0
   Amon2::Declare:
     file: lib/Amon2/Declare.pm
+    version: 0
+  Amon2::LocalContext:
+    file: lib/Amon2/LocalContext.pm
     version: 0
   Amon2::Plugin::Web::CSRFDefender:
     file: lib/Amon2/Plugin/Web/CSRFDefender.pm
@@ -139,4 +145,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.70
+version: 3.71

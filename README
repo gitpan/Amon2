@@ -13,10 +13,10 @@ DESCRIPTION
 
 METHODS
   CLASS METHODS for "Amon2" class
-    my $c = Amon2->context();
+    my $c = MyApp->context();
         Get the context object.
 
-    Amon2->set_context($c)
+    MyApp->set_context($c)
         Set your context object(INTERNAL USE ONLY).
 
 CLASS METHODS for inherited class

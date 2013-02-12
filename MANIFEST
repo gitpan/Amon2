@@ -66,7 +66,9 @@ eg/LongPoll/Makefile.PL
 eg/realtime-chat/chat.psgi
 lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
+lib/Amon2/ContextGuard.pm
 lib/Amon2/Declare.pm
+lib/Amon2/LocalContext.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
 lib/Amon2/Plugin/Web/HTTPSession.pm
@@ -118,6 +120,8 @@ t/100_core/012_trigger_controller.t
 t/100_core/013_tiffany.t
 t/100_core/014_load_plugins.t
 t/100_core/015_debug_mode.t
+t/100_core/016_context_guard.t
+t/100_core/017_local_context.t
 t/200_app/01_extended.t
 t/200_app/02_deepnamespace.t
 t/300_setup/01_minimum.t
