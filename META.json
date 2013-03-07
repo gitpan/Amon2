@@ -51,7 +51,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.74"
+         "version" : "3.75"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm",
@@ -200,5 +200,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "3.74"
+   "version" : "3.75"
 }
