@@ -51,7 +51,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.75"
+         "version" : "3.76"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm",
@@ -63,6 +63,10 @@
       },
       "Amon2::Declare" : {
          "file" : "lib/Amon2/Declare.pm",
+         "version" : 0
+      },
+      "Amon2::Plugin::ShareDir" : {
+         "file" : "lib/Amon2/Plugin/ShareDir.pm",
          "version" : 0
       },
       "Amon2::Plugin::Web::CSRFDefender" : {
@@ -200,5 +204,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "3.75"
+   "version" : "3.76"
 }

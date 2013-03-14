@@ -68,6 +68,7 @@ lib/Amon2.pm
 lib/Amon2/Config/Simple.pm
 lib/Amon2/ContextGuard.pm
 lib/Amon2/Declare.pm
+lib/Amon2/Plugin/ShareDir.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
 lib/Amon2/Plugin/Web/HTTPSession.pm
@@ -139,6 +140,9 @@ t/600_plugins/011_csrf_defender_manual.t
 t/600_plugins/012_streaming.t
 t/600_plugins/013_websocket.t
 t/600_plugins/014_csrf_defender_post_only.t
+t/600_plugins/020_share_dir.t
+t/600_plugins/dist/MyApp/foo
+t/600_plugins/share/foo
 t/800_dispatcher/002_router_simple.t
 t/800_dispatcher/003_lite.t
 t/TestFlavor.pm
