@@ -1,7 +1,7 @@
 {
    "abstract" : "lightweight web application framework",
    "author" : [
-      "Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>"
+      "Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>"
    ],
    "dynamic_config" : 1,
    "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.130880",
@@ -51,7 +51,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.79"
+         "version" : "3.80"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -167,5 +167,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "3.79"
+   "version" : "3.80"
 }

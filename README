@@ -48,7 +48,7 @@ CLASS METHODS for inherited class
     "MyApp->load_plugin($module_name[, \%config])"
         This method loads plugin for the application.
 
-        *$module_name:* package name of the plugin. You can write it as two
+        *$module_name* package name of the plugin. You can write it as two
         form like DBIx::Class:
 
             __PACKAGE__->load_plugin("Web::HTTPSession");    # => loads Amon2::Plugin::Web::HTTPSession
@@ -138,7 +138,7 @@ SUPPORTS
     #amon at irc.perl.org is available.
 
 AUTHOR
-    Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+    Tokuhiro Matsuno <tokuhirom@gmail.com>
 
 LICENSE
     This library is free software; you can redistribute it and/or modify it

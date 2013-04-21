@@ -1,7 +1,7 @@
 ---
 abstract: 'lightweight web application framework'
 author:
-  - 'Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>'
+  - 'Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>'
 build_requires:
   Test::More: 0.98
   Test::Requires: 0.06
@@ -23,7 +23,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.79
+    version: 3.80
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -109,4 +109,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.79
+version: 3.80
