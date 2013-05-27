@@ -1,14 +1,16 @@
 ---
 abstract: 'lightweight web application framework'
 author:
-  - 'Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>'
+  - 'Tokuhiro Matsuno <tokuhirom@gmail.com>'
 build_requires:
   Test::More: 0.98
   Test::Requires: 0.06
 configure_requires:
+  CPAN::Meta: 0
+  CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
-dynamic_config: 1
-generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.130880'
+dynamic_config: 0
+generated_by: 'Minilla/v0.4.3, CPAN::Meta::Converter version 2.130880'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,14 +18,17 @@ meta-spec:
 name: Amon2
 no_index:
   directory:
-    - eg
-    - inc
     - t
     - xt
+    - inc
+    - share
+    - eg
+    - examples
+    - author
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.80
+    version: 3.81
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -70,12 +75,12 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 0.01
+    version: 3.81
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 0.01
+    version: 3.81
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -108,5 +113,27 @@ requires:
   parent: 0.223
   perl: 5.008001
 resources:
-  license: http://dev.perl.org/licenses/
-version: 3.80
+  bugtracker: https://github.com/tokuhirom/Amon/issues
+  homepage: https://github.com/tokuhirom/Amon
+  repository: git://github.com/tokuhirom/Amon.git
+version: 3.81
+x_contributors:
+  - 'noblejasper <nobjas@gmail.com>'
+  - 'noblejasper <jasper@main.noble-jasper.com>'
+  - 'hiratara <hiratara@cpan.org>'
+  - 's-aska <s.aska.org@gmail.com>'
+  - 'Kentaro Kuribayashi <kentarok@gmail.com>'
+  - 'Yuki Ibe <yibe@yibe.org>'
+  - 'mattn <mattn.jp@gmail.com>'
+  - 'Syohei YOSHIDA <syohex@gmail.com>'
+  - 'Masahiro Nagano <kazeburo@gmail.com>'
+  - 'rightgo09 <skyarrow09@gmail.com>'
+  - 'karupanerura <karupa@cpan.org>'
+  - 'hatyuki <hatyuki29@gmail.com>'
+  - 'Keiji, Yoshimi <walf443@gmail.com>'
+  - 'Nishibayashi Takuji <takuji31@gmail.com>'
+  - 'dragon3 <ryuzo.yamamoto@gmail.com>'
+  - 'Fuji, Goro <g.psy.va@gmail.com>'
+  - 'issm <issmxx@gmail.com>'
+  - 'hisaichi5518 <hisada.kazuki@gmail.com>'
+  - 'Adrian <adrian@investometrica.com>'
