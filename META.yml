@@ -28,7 +28,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.81
+    version: 3.82
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -75,12 +75,12 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 3.81
+    version: 3.82
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 3.81
+    version: 3.82
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -116,7 +116,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.81
+version: 3.82
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
@@ -125,7 +125,6 @@ x_contributors:
   - 'Kentaro Kuribayashi <kentarok@gmail.com>'
   - 'Yuki Ibe <yibe@yibe.org>'
   - 'mattn <mattn.jp@gmail.com>'
-  - 'Syohei YOSHIDA <syohex@gmail.com>'
   - 'Masahiro Nagano <kazeburo@gmail.com>'
   - 'rightgo09 <skyarrow09@gmail.com>'
   - 'karupanerura <karupa@cpan.org>'
@@ -137,3 +136,4 @@ x_contributors:
   - 'issm <issmxx@gmail.com>'
   - 'hisaichi5518 <hisada.kazuki@gmail.com>'
   - 'Adrian <adrian@investometrica.com>'
+  - 'Syohei YOSHIDA <syohex@gmail.com>'
