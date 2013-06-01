@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.4.3",
+   "generated_by" : "Minilla/v0.4.5",
    "license" : "perl_5",
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -47,6 +47,7 @@
       "runtime" : {
          "requires" : {
             "Exporter" : "0",
+            "MRO::Compat" : "0",
             "Plack" : "0.9982",
             "Plack::Session" : "0",
             "Router::Simple" : "0.14",
@@ -62,7 +63,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "3.82"
+         "version" : "3.83"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -132,14 +133,14 @@
       },
       "Amon2::Setup::Flavor::Basic" : {
          "file" : "lib/Amon2/Setup/Flavor/Basic.pm",
-         "version" : "3.82"
+         "version" : "3.83"
       },
       "Amon2::Setup::Flavor::Large" : {
          "file" : "lib/Amon2/Setup/Flavor/Large.pm"
       },
       "Amon2::Setup::Flavor::Minimum" : {
          "file" : "lib/Amon2/Setup/Flavor/Minimum.pm",
-         "version" : "3.82"
+         "version" : "3.83"
       },
       "Amon2::Setup::VC::Git" : {
          "file" : "lib/Amon2/Setup/VC/Git.pm"
@@ -183,7 +184,7 @@
          "web" : "https://github.com/tokuhirom/Amon"
       }
    },
-   "version" : "3.82",
+   "version" : "3.83",
    "x_contributors" : [
       "noblejasper <nobjas@gmail.com>",
       "noblejasper <jasper@main.noble-jasper.com>",
