@@ -3,6 +3,7 @@ abstract: 'lightweight web application framework'
 author:
   - 'Tokuhiro Matsuno <tokuhirom@gmail.com>'
 build_requires:
+  Amon2::Lite: 0
   Test::More: 0.98
   Test::Requires: 0.06
 configure_requires:
@@ -10,7 +11,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.4.9, CPAN::Meta::Converter version 2.130880'
+generated_by: 'Minilla/v0.5.6, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,7 +29,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 3.85
+    version: 3.86
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -75,12 +76,12 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 3.85
+    version: 3.86
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 3.85
+    version: 3.86
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -102,22 +103,36 @@ provides:
   Amon2::Web::WebSocket:
     file: lib/Amon2/Web/WebSocket.pm
 requires:
+  Encode: 0
   Exporter: 0
+  File::Temp: 0
+  Getopt::Long: 0
+  HTML::FillInForm::Lite: 0
+  HTTP::Headers: 0
+  Hash::MultiValue: 0
+  JSON: 2
   MRO::Compat: 0
   Plack: 0.9982
+  Plack::Request: 0
+  Plack::Response: 0
   Plack::Session: 0
+  Plack::Util: 0
+  Pod::Usage: 0
   Router::Simple: 0.14
   Router::Simple::Sinatraish: 0.02
+  Scalar::Util: 0
   Text::Xslate: 1.6001
   Try::Tiny: 0.06
   URI: 1.54
+  URI::Escape: 0
+  URI::QueryParam: 0
   parent: 0.223
   perl: 5.008001
 resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 3.85
+version: 3.86
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
@@ -138,3 +153,4 @@ x_contributors:
   - 'hisaichi5518 <hisada.kazuki@gmail.com>'
   - 'Adrian <adrian@investometrica.com>'
   - 'Syohei YOSHIDA <syohex@gmail.com>'
+  - 'Fuji, Goro <gfuji@cpan.org>'
