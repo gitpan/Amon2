@@ -31,7 +31,6 @@ $(function () {
 
     $self->write_file("$base/css/main.css", <<'...');
 body {
-    margin-top: 50px;
 }
 
 footer {
@@ -70,16 +69,16 @@ sub write_templates {
     <h1 style="text-align: center; font-size: 280%;">Battery Included?</h1>
 
     <div class="row">
-        <div class="span4">
-            <h2>CSS Library</h2>
+        <div class="col-lg-4">
+            <h2><i class="glyphicon glyphicon-ok"></i> CSS Library</h2>
             <div>
                 Current version of Amon2 using twitter's bootstrap.css as a default CSS library.<br />
                 If you want to learn it, please access to <a href="http://twitter.github.com/bootstrap/">twitter.github.com/bootstrap/</a>
             </div>
         </div>
 
-        <div class="span4">
-            <h2>JS Library</h2>
+        <div class="col-lg-4">
+            <h2><i class="glyphicon glyphicon-ok"></i> JS Library</h2>
             <div>
                 <a href="http://jquery.com/">jQuery</a> included.
                 <ul>
@@ -92,8 +91,8 @@ sub write_templates {
             </div>
         </div>
 
-        <div class="span4">
-            <h2>Template Engine</h2>
+        <div class="col-lg-4">
+            <h2><i class="glyphicon glyphicon-ok"></i> Template Engine</h2>
             <div>
                 Amon2 uses <B>Text::Xslate</B>(TTerse) as a primary template engine.<br />
                 But you can use any template engine easily.
@@ -102,8 +101,8 @@ sub write_templates {
     </div>
 
     <div class="row">
-        <div class="span4">
-            <h2>O/R Mapper?</h2>
+        <div class="col-lg-4">
+            <h2><i class="glyphicon glyphicon-ok"></i> O/R Mapper?</h2>
             <div>
                 There is no O/R Mapper support. But I recommend use Teng.<br />
                 You can integrate Teng very easily.<br />
@@ -117,7 +116,7 @@ sub write_templates {
 
 <div class="row">
     <h1 style="text-align: center;">Amon2 is right for you if ...</h1>
-    <div class="span24">
+    <div class="col-lg-24">
         <ul>
         <li>You need exceptional performance.</li>
         <li>You want a framework with a small footprint.</li>
@@ -129,7 +128,7 @@ sub write_templates {
 <hr />
 
 <section class="row">
-    <div class="span12">
+    <div class="col-lg-12">
         <h1>Documents?</h1>
         <p>Complete docs are available on <a href="http://amon.64p.org/">amon.64p.org</a></p>
         <p>And there are module specific docs on <a href="https://metacpan.org/release/Amon2">CPAN</a></p>
@@ -157,20 +156,20 @@ sub write_templates {
     <![endif]-->
 </head>
 <body[% IF bodyID %] id="[% bodyID %]"[% END %]>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="#"><% $dist %></a>
-                <div class="nav-collapse">
-                    <ul class="nav">
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><% $dist %></a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">Link</a></li>
                         <li><a href="#">Link</a></li>
                         <li><a href="#">Link</a></li>
                     </ul>
                 </div>
-            </div>
-        </div><!-- /.navbar-inner -->
+            </div><!-- /.navbar-inner -->
+        </div><!-- /.container -->
     </div><!-- /.navbar -->
     <div class="container">
         <div id="main">
@@ -229,15 +228,13 @@ sub run {
 <% header %>
 use <% $module %>::Web;
 use <% $module %>;
-use Plack::Session::Store::DBI;
+use Plack::Session::Store::File;
 use Plack::Session::State::Cookie;
-use DBI;
+use URI::Escape;
+use File::Path ();
 
-{
-    my $c = <% $module %>->new();
-    $c->setup_schema();
-}
-my $db_config = <% $module %>->config->{DBI} || die "Missing configuration for DBI";
+my $session_dir = File::Spec->catdir(File::Spec->tmpdir, uri_escape("<% $module %>") . "-$<" );
+File::Path::mkpath($session_dir);
 builder {
     enable 'Plack::Middleware::Static',
         path => qr{^(?:/static/)},
@@ -246,12 +243,12 @@ builder {
         path => qr{^(?:/robots\.txt|/favicon\.ico)$},
         root => File::Spec->catdir(dirname(__FILE__), 'static');
     enable 'Plack::Middleware::ReverseProxy';
+
+    # If you want to run the app on multiple servers,
+    # you need to use Plack::Sesion::Store::DBI or ::Store::Cache.
     enable 'Plack::Middleware::Session',
-        store => Plack::Session::Store::DBI->new(
-            get_dbh => sub {
-                DBI->connect( @$db_config )
-                    or die $DBI::errstr;
-            }
+        store => Plack::Session::Store::File->new(
+            dir => $session_dir,
         ),
         state => Plack::Session::State::Cookie->new(
             httponly => 1,
@@ -260,30 +257,77 @@ builder {
 };
 ...
 
+    $self->write_file('lib/<<PATH>>/DB.pm', <<'...');
+package <% $module %>::DB;
+use strict;
+use warnings;
+use utf8;
+use parent qw(Teng);
+
+__PACKAGE__->load_plugin('Count');
+__PACKAGE__->load_plugin('Replace');
+__PACKAGE__->load_plugin('Pager');
+
+1;
+...
+
+    $self->write_file('lib/<<PATH>>/DB/Schema.pm', <<'...');
+package <% $module %>::DB::Schema;
+use strict;
+use warnings;
+use utf8;
+
+use Teng::Schema::Declare;
+
+base_row_class '<% $module %>::DB::Row';
+
+table {
+    name 'member';
+    pk 'id';
+    columns qw(id name);
+};
+
+1;
+...
+
+    $self->write_file('lib/<<PATH>>/DB/Row.pm', <<'...');
+package <% $module %>::DB::Row;
+use strict;
+use warnings;
+use utf8;
+use parent qw(Teng::Row);
+
+1;
+...
+
     $self->write_file('lib/<<PATH>>.pm', <<'...');
 package <% $module %>;
 use strict;
 use warnings;
 use utf8;
 use parent qw/Amon2/;
-our $VERSION='3.87';
+our $VERSION='3.99_01';
 use 5.008001;
+use <% $module %>::DB::Schema;
+use <% $module %>::DB;
 
-__PACKAGE__->load_plugin(qw/DBI/);
+my $schema = <% $module %>::DB::Schema->instance;
 
-# initialize database
-use DBI;
-sub setup_schema {
-    my $self = shift;
-    my $dbh = $self->dbh();
-    my $driver_name = $dbh->{Driver}->{Name};
-    my $fname = lc("sql/${driver_name}.sql");
-    open my $fh, '<:encoding(UTF-8)', $fname or die "$fname: $!";
-    my $source = do { local $/; <$fh> };
-    for my $stmt (split /;/, $source) {
-        next unless $stmt =~ /\S/;
-        $dbh->do($stmt) or die $dbh->errstr();
+sub db {
+    my $c = shift;
+    if (!exists $c->{db}) {
+        my $conf = $c->config->{DBI}
+            or die "Missing configuration about DBI";
+        $c->{db} = <% $module %>::DB->new(
+            schema       => $schema,
+            connect_info => [@$conf],
+            # I suggest to enable following lines if you are using mysql.
+            # on_connect_do => [
+            #     'SET SESSION sql_mode=STRICT_TRANS_TABLES;',
+            # ],
+        );
     }
+    $c->{db};
 }
 
 1;
@@ -297,7 +341,7 @@ sub setup_schema {
 !.gitignore
 ...
 
-    for my $env (qw(development deployment test)) {
+    for my $env (qw(development production test)) {
         $self->write_file("config/${env}.pl", <<'...', {env => $env});
 use File::Spec;
 use File::Basename qw(dirname);
@@ -315,15 +359,15 @@ my $dbpath = File::Spec->catfile($basedir, 'db', '<% $env %>.db');
     }
 
     $self->write_file("sql/mysql.sql", <<'...');
-CREATE TABLE IF NOT EXISTS sessions (
-    id           CHAR(72) PRIMARY KEY,
-    session_data TEXT
+CREATE TABLE IF NOT EXISTS member (
+    id           INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name         VARCHAR(255)
 );
 ...
     $self->write_file("sql/sqlite.sql", <<'...');
-CREATE TABLE IF NOT EXISTS sessions (
-    id           CHAR(72) PRIMARY KEY,
-    session_data TEXT
+CREATE TABLE IF NOT EXISTS member (
+    id           INTEGER NOT NULL PRIMARY KEY,
+    name         VARCHAR(255)
 );
 ...
 
@@ -333,12 +377,13 @@ use warnings;
 use utf8;
 use Test::More;
 
-use_ok $_ for qw(
-    <% $module %>
-    <% $module %>::Web
-    <% $module %>::Web::ViewFunctions
-    <% $module %>::Web::Dispatcher
-);
+use <% $module %>;
+use <% $module %>::Web;
+use <% $module %>::DB::Schema;
+use <% $module %>::Web::ViewFunctions;
+use <% $module %>::Web::Dispatcher;
+
+pass "All modules can load.";
 
 done_testing;
 ...
@@ -625,11 +670,10 @@ sub create_makefile_pl {
             'HTML::FillInForm::Lite'          => '1.11',
             'Time::Piece'                     => '1.20',
             'Plack::Session'                  => '0.14',
-            'DBD::SQLite'                     => '1.33',
             'Plack::Middleware::Session'      => 0,
             'Plack::Middleware::ReverseProxy' => '0.09',
             'JSON'                            => '2.50',
-            'Amon2::DBI'                      => '0.30',
+            'Teng'                            => '0.18',
             'DBD::SQLite'                     => '1.33',
             'Test::WWW::Mechanize::PSGI'      => 0,
         },
@@ -652,16 +696,14 @@ sub create_t_util_pm {
 sub slurp {
     my $fname = shift;
     open my $fh, '<:encoding(UTF-8)', $fname or die "$fname: $!";
-    do { local $/; <$fh> };
+    scalar do { local $/; <$fh> };
 }
 
 # initialize database
 use <% $module %>;
 {
     unlink 'db/test.db' if -f 'db/test.db';
-
-    my $c = <% $module %>->new();
-    $c->setup_schema();
+    system("sqlite3 db/test.db < sql/sqlite.sql");
 }
 ...
 }
