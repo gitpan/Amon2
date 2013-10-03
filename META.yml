@@ -10,7 +10,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.6.5, CPAN::Meta::Converter version 2.132510'
+generated_by: 'Minilla/v0.7.0, CPAN::Meta::Converter version 2.132510'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,7 +28,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 4.03
+    version: 4.04
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -75,12 +75,13 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 4.03
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 4.03
+    version: 4.04
+  Amon2::Setup::Flavor::Standalone:
+    file: lib/Amon2/Setup/Flavor/Standalone.pm
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -106,6 +107,7 @@ recommends:
 requires:
   Encode: 0
   Exporter: 0
+  File::Copy::Recursive: 0
   File::Temp: 0
   Getopt::Long: 0
   HTML::FillInForm::Lite: 0
@@ -133,7 +135,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 4.03
+version: 4.04
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'

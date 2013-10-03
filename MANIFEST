@@ -96,6 +96,7 @@ lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
 lib/Amon2/Setup/Flavor/Large.pm
 lib/Amon2/Setup/Flavor/Minimum.pm
+lib/Amon2/Setup/Flavor/Standalone.pm
 lib/Amon2/Setup/VC/Git.pm
 lib/Amon2/Trigger.pm
 lib/Amon2/Util.pm
@@ -130,6 +131,7 @@ t/300_setup/01_minimum.t
 t/300_setup/02_basic.t
 t/300_setup/03_asset.t
 t/300_setup/06_large.t
+t/300_setup/07_standalone.t
 t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t
 t/600_plugins/007_json.t
