@@ -104,7 +104,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "4.05"
+         "version" : "4.06"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -180,7 +180,7 @@
       },
       "Amon2::Setup::Flavor::Minimum" : {
          "file" : "lib/Amon2/Setup/Flavor/Minimum.pm",
-         "version" : "4.05"
+         "version" : "4.06"
       },
       "Amon2::Setup::Flavor::Standalone" : {
          "file" : "lib/Amon2/Setup/Flavor/Standalone.pm"
@@ -227,7 +227,7 @@
          "web" : "https://github.com/tokuhirom/Amon"
       }
    },
-   "version" : "4.05",
+   "version" : "4.06",
    "x_contributors" : [
       "noblejasper <nobjas@gmail.com>",
       "noblejasper <jasper@main.noble-jasper.com>",
@@ -249,6 +249,7 @@
       "Adrian <adrian@investometrica.com>",
       "Syohei YOSHIDA <syohex@gmail.com>",
       "Fuji, Goro <gfuji@cpan.org>",
-      "ITO Nobuaki <daydream.trippers@gmail.com>"
+      "ITO Nobuaki <daydream.trippers@gmail.com>",
+      "Geraud CONTINSOUZAS <geraud@hyaku.nijuu.nana>"
    ]
 }

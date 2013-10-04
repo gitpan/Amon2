@@ -11,6 +11,17 @@ sub psgi_file {
     return 'script/' . lc($self->{dist}) . '-server';
 }
 
+sub create_makefile_pl {
+    my ($self, $prereq_pm) = @_;
+
+    $self->SUPER::create_makefile_pl(
+        +{
+            %{ $prereq_pm || {} },
+            'Starlet' => '0.19',
+        },
+    );
+}
+
 sub run {
     my $self = shift;
     $self->SUPER::run();
@@ -38,6 +49,7 @@ use Plack::Loader;
 my $session_dir = File::Spec->catdir(File::Spec->tmpdir, uri_escape("<% $module %>") . "-$<" );
 File::Path::mkpath($session_dir);
 my $app = builder {
+    enable 'Plack::Middleware::AccessLog';
     enable 'Plack::Middleware::Static',
         path => qr{^(?:/static/)},
         root => File::Spec->catdir(dirname(__FILE__), '..', 'share');
@@ -76,6 +88,8 @@ unless (caller) {
         print "<% $module %>: $<% $module %>::VERSION\n";
         exit 0;
     }
+
+    print "<% $module %>: http://${host}:${port}/\n";
 
     my $loader = Plack::Loader->load('Starlet',
         port        => $port,
