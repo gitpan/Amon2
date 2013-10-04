@@ -28,7 +28,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 4.04
+    version: 4.05
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -79,7 +79,7 @@ provides:
     file: lib/Amon2/Setup/Flavor/Large.pm
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 4.04
+    version: 4.05
   Amon2::Setup::Flavor::Standalone:
     file: lib/Amon2/Setup/Flavor/Standalone.pm
   Amon2::Setup::VC::Git:
@@ -135,7 +135,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 4.04
+version: 4.05
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
