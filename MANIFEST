@@ -77,7 +77,6 @@ lib/Amon2/ContextGuard.pm
 lib/Amon2/Declare.pm
 lib/Amon2/Plugin/Web/CSRFDefender.pm
 lib/Amon2/Plugin/Web/FillInFormLite.pm
-lib/Amon2/Plugin/Web/HTTPSession.pm
 lib/Amon2/Plugin/Web/JSON.pm
 lib/Amon2/Plugin/Web/NoCache.pm
 lib/Amon2/Plugin/Web/PlackSession.pm
@@ -101,6 +100,7 @@ lib/Amon2/Trigger.pm
 lib/Amon2/Util.pm
 lib/Amon2/Web.pm
 lib/Amon2/Web/Dispatcher/Lite.pm
+lib/Amon2/Web/Dispatcher/RouterBoom.pm
 lib/Amon2/Web/Dispatcher/RouterSimple.pm
 lib/Amon2/Web/Request.pm
 lib/Amon2/Web/Response.pm
@@ -188,7 +188,6 @@ t/300_setup/06_large.t
 t/300_setup/07_run_cli_server.t
 t/300_setup/08_installable.t
 t/300_setup/09_minil_migrate.t
-t/600_plugins/003_session.t
 t/600_plugins/005_fillin_form_lite.t
 t/600_plugins/007_json.t
 t/600_plugins/007_json_default_encoding.t
@@ -202,6 +201,8 @@ t/600_plugins/013_websocket.t
 t/600_plugins/014_csrf_defender_post_only.t
 t/800_dispatcher/002_router_simple.t
 t/800_dispatcher/003_lite.t
+t/800_dispatcher/004_router_boom.t
+t/800_dispatcher/004_router_boom_sinatraish.t
 t/TestFlavor.pm
 t/Util.pm
 t/tmpl/foo.mt

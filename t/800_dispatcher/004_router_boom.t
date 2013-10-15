@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
-use Test::Requires 'Test::WWW::Mechanize::PSGI', 'Router::Simple';
+use Test::Requires 'Test::WWW::Mechanize::PSGI';
 
 {
     package MyApp;
@@ -19,11 +19,9 @@ use Test::Requires 'Test::WWW::Mechanize::PSGI', 'Router::Simple';
     package MyApp::Web::C::My;
     sub foo { Amon2->context->create_response(200, [], 'foo') }
 
-    package MyApp::Web::C::Bar;
-    sub poo { Amon2->context->create_response(200, [], 'poo') }
-
     package MyApp::Web::C::Root;
     sub index { Amon2->context->create_response(200, [], 'top') }
+    sub post_index { Amon2->context->create_response(200, [], 'post_top') }
 
     package MyApp::Web::C::Blog;
     sub monthly {
@@ -37,16 +35,17 @@ use Test::Requires 'Test::WWW::Mechanize::PSGI', 'Router::Simple';
     sub login { $_[1]->create_response(200, [], 'login') }
 
     package MyApp::Web::Dispatcher;
-    use Amon2::Web::Dispatcher::RouterSimple;
+    use Amon2::Web::Dispatcher::RouterBoom;
 
-    ::isa_ok __PACKAGE__->router(), 'Router::Simple';
+    ::isa_ok __PACKAGE__->router(), 'Router::Boom::Method';
 
-    connect '/', {controller => 'Root', action => 'index'};
-    connect '/my/foo', 'My#foo';
-    connect '/bar/:action', 'Bar';
-    connect '/blog/{year}/{month}', {controller => 'Blog', action => 'monthly'};
-    submapper('/account/', {controller => 'Account'})
-        ->connect('login', {action => 'login'});
+    base 'MyApp::Web::C';
+
+    get '/',        'Root#index';
+    post '/',        'Root#post_index';
+    get '/my/foo', 'My#foo';
+    get '/blog/{year}/{month}', 'Blog#monthly';
+    get '/account/login', 'Account#login';
 }
 
 my $app = MyApp::Web->to_app();
@@ -54,10 +53,10 @@ my $app = MyApp::Web->to_app();
 my $mech = Test::WWW::Mechanize::PSGI->new(app => $app);
 $mech->get_ok('/');
 $mech->content_is('top');
+$mech->post_ok('/');
+$mech->content_is('post_top');
 $mech->get_ok('/my/foo');
 $mech->content_is('foo');
-$mech->get_ok('/bar/poo');
-$mech->content_is('poo');
 $mech->get_ok('/blog/2010/04');
 $mech->content_is("blog: 2010, 04");
 $mech->get_ok('/account/login');

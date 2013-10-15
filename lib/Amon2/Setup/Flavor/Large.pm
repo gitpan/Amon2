@@ -6,7 +6,7 @@ package Amon2::Setup::Flavor::Large;
 use parent qw(Amon2::Setup::Flavor);
 use File::Path ();
 
-our $VERSION = '5.03';
+our $VERSION = '5.04';
 
 sub admin_script {
     my $self = shift;
@@ -89,9 +89,9 @@ sub run {
 
     $self->create_cpanfile(
         {
-            'String::CamelCase' => '0.02',
             'Module::Find'      => 0, # load controllers
             'Module::Functions' => 2, # Dispatcher
+            'Router::Boom'      => '0.06',
         }
     );
 

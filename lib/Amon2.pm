@@ -8,7 +8,7 @@ use Carp ();
 use Amon2::Config::Simple;
 use Amon2::ContextGuard;
 
-our $VERSION = '5.03';
+our $VERSION = '5.04';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -177,7 +177,7 @@ This method loads the plugin for the application.
 
 I<$module_name> package name of the plugin. You can write it as two form like L<DBIx::Class>:
 
-    __PACKAGE__->load_plugin("Web::HTTPSession");    # => loads Amon2::Plugin::Web::HTTPSession
+    __PACKAGE__->load_plugin("Web::CSRFDefender");    # => loads Amon2::Plugin::Web::CSRFDefender
 
 If you want to load a plugin in your own name space, use the '+' character before a package name, like following:
     __PACKAGE__->load_plugin("+MyApp::Plugin::Foo"); # => loads MyApp::Plugin::Foo
@@ -279,6 +279,34 @@ More complicated documents are available on L<http://amon.64p.org/>
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item noblejasper
+=item hiratara
+=item s-aska
+=item Kentaro Kuribayashi
+=item Yuki Ibe
+=item mattn
+=item Masahiro Nagano
+=item rightgo09
+=item karupanerura
+=item hatyuki
+=item Keiji, Yoshimi
+=item Nishibayashi Takuji
+=item dragon3
+=item Fuji, Goro
+=item issm
+=item hisaichi5518
+=item Adrian
+=item Fuji, Goro
+=item ITO Nobuaki
+=item Geraud CONTINSOUZAS
+=item Syohei YOSHIDA
+
+=back
 
 =head1 LICENSE
 

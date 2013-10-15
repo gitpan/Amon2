@@ -19,7 +19,7 @@ plan skip_all => 'Missing cpanm' unless $cpanm;
 plan skip_all => 'Missing minil' unless $minil;
 plan skip_all => 'Missing git'   unless $git;
 plan skip_all => 'Missing sqlite3'   unless $sqlite3;
-plan skip_all => 'AUTHOR_TESTING and TRAVIS_CI only.' unless $ENV{AUTHOR_TESTING} || $ENV{TRAVIS};
+plan skip_all => 'AUTHOR_TESTING and TRAVIS only.' unless $ENV{AUTHOR_TESTING} || $ENV{TRAVIS};
 
 run_tests('Amon2::Setup::Flavor::Large', 'my-app-admin-server');
 run_tests('Amon2::Setup::Flavor::Large', 'my-app-web-server');
@@ -46,9 +46,12 @@ sub run_tests {
             is system($git, 'add', '.'), 0;
             is system($git, 'commit', '-m', 'initial import'), 0;
             is system($^X, '--', $minil, 'migrate'), 0;
+            ok -f 'META.json', 'Generated META.json';
         }
-        is system($^X, '--', $cpanm, '--verbose', '--no-interactive', '--installdeps', '-l', $libdir, $workdir), 0;
-        is system($^X, '--', $cpanm, '--verbose', '--no-interactive', '-l', $libdir, $workdir), 0;
+        my @opts = ();
+        # my @opts = ('--verbose', '--no-interactive');
+        is system($^X, '--', $cpanm, @opts, '--installdeps', '-l', $libdir, $workdir), 0;
+        is system($^X, '--', $cpanm, @opts, '-l', $libdir, $workdir), 0;
 
         if (-f "$workdir/sql/sqlite.sql") {
             diag "Installing sql";

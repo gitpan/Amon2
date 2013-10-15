@@ -2,7 +2,7 @@ package <% $module %>;
 use strict;
 use warnings;
 use utf8;
-our $VERSION='5.03';
+our $VERSION='0.01';
 use 5.008001;
 use <% $module %>::DB::Schema;
 use <% $module %>::DB;
@@ -31,3 +31,17 @@ sub db {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+<% $module %> - <% $module %>
+
+=head1 DESCRIPTION
+
+This is a main context class for <% $module %>
+
+=head1 AUTHOR
+
+<% $module %> authors.
+
