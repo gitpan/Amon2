@@ -29,7 +29,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 5.04
+    version: 5.05
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -74,13 +74,13 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 5.04
+    version: 5.05
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
-    version: 5.04
+    version: 5.05
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 5.04
+    version: 5.05
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -124,7 +124,7 @@ requires:
   Plack::Session: 0
   Plack::Util: 0
   Pod::Usage: 0
-  Router::Boom: 0.06
+  Router::Boom: 0.07
   Scalar::Util: 0
   Text::Xslate: 2.0010
   Try::Tiny: 0.06
@@ -137,7 +137,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 5.04
+version: 5.05
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
