@@ -8,7 +8,7 @@ use Carp ();
 use Amon2::Config::Simple;
 use Amon2::ContextGuard;
 
-our $VERSION = '5.11';
+our $VERSION = '5.12';
 {
     our $CONTEXT; # You can localize this variable in your application.
     sub context { $CONTEXT }
@@ -285,26 +285,47 @@ Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>
 =over 4
 
 =item noblejasper
+
 =item hiratara
+
 =item s-aska
+
 =item Kentaro Kuribayashi
+
 =item Yuki Ibe
+
 =item mattn
+
 =item Masahiro Nagano
+
 =item rightgo09
+
 =item karupanerura
+
 =item hatyuki
+
 =item Keiji, Yoshimi
+
 =item Nishibayashi Takuji
+
 =item dragon3
+
 =item Fuji, Goro
+
 =item issm
+
 =item hisaichi5518
+
 =item Adrian
+
 =item Fuji, Goro
+
 =item ITO Nobuaki
+
 =item Geraud CONTINSOUZAS
+
 =item Syohei YOSHIDA
+
 =item magnolia
 
 =back
