@@ -23,13 +23,15 @@ sub init {
 
     my $form_regexp = $conf->{post_only} ? qr{<form\s*.*?\s*method=['"]?post['"]?\s*.*?>}is : qr{<form\s*.*?>}is;
 
-    $c->add_trigger(
-        HTML_FILTER => sub {
-            my ($self, $html) = @_;
-            $html =~ s!($form_regexp)!qq{$1\n<input type="hidden" name="csrf_token" value="}.$self->get_csrf_defender_token().qq{" />}!ge;
-            return $html;
-        },
-    );
+    unless ($conf->{no_html_filter}) {
+        $c->add_trigger(
+            HTML_FILTER => sub {
+                my ($self, $html) = @_;
+                $html =~ s!($form_regexp)!qq{$1\n<input type="hidden" name="csrf_token" value="}.$self->get_csrf_defender_token().qq{" />}!ge;
+                return $html;
+            },
+        );
+    }
     unless ($conf->{no_validate_hook}) {
         $c->add_trigger(
             BEFORE_DISPATCH => sub {
@@ -81,6 +83,8 @@ sub validate_csrf {
 1;
 __END__
 
+=for stopwords CSRFDefender
+
 =head1 NAME
 
 Amon2::Plugin::Web::CSRFDefender - Anti CSRF filter
@@ -107,6 +111,22 @@ Get a CSRF defender token. This method is useful to add token for AJAX request.
 =item $c->validate_csrf()
 
 You can validate CSRF token manually.
+
+=back
+
+=head1 PARAMETERS
+
+=over 4
+
+=item no_validate_hook
+
+Do not run validation automatically.
+
+=item no_html_filter
+
+Disable HTML rewriting filter. By default, CSRFDefender inserts XSRF token for each form element.
+
+It's very useful but it hits performance issue if your site is very high traffic.
 
 =back
 
