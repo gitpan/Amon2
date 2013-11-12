@@ -6,7 +6,7 @@ package Amon2::Setup::Flavor::Large;
 use parent qw(Amon2::Setup::Flavor);
 use File::Path ();
 
-our $VERSION = '5.16';
+our $VERSION = '6.00';
 
 sub admin_script {
     my $self = shift;
@@ -89,9 +89,25 @@ sub run {
 
     $self->create_cpanfile(
         {
-            'Module::Find'      => 0, # load controllers
-            'Module::Functions' => 2, # Dispatcher
-            'Router::Boom'      => '0.06',
+            'Amon2::Util'                        => 0,
+            'Amon2::Web'                         => 0,
+            'Amon2::Web::Dispatcher::RouterBoom' => 0,
+            'DBI'                                => 0,
+            'File::ShareDir'                     => 0,
+            'Getopt::Long'                       => 0,
+            'HTTP::Session2::ClientStore'        => 0,
+            'Module::Build'                      => 0,
+            'Module::Find'                       => 0,        # load controllers
+            'Module::Functions'                  => 2,        # Dispatcher
+            'Plack::App::File'                   => 0,
+            'Plack::Builder'                     => 0,
+            'Plack::Loader'                      => 0,
+            'Plack::Session::Store::DBI'         => 0,
+            'Router::Boom'                       => '0.06',
+            'Teng'                               => 0,
+            'Teng::Row'                          => 0,
+            'Teng::Schema::Declare'              => 0,
+            'parent'                             => 0,
         }
     );
 
@@ -128,6 +144,9 @@ sub run {
         $self->render_file( "lib/<<PATH>>/${moniker}/ViewFunctions.pm", 'Minimum/lib/__PATH__/Web/ViewFunctions.pm', {
             package => "$self->{module}::${moniker}::ViewFunctions",
         });
+        $self->render_file( "lib/<<PATH>>/${moniker}/Plugin/Session.pm", 'Basic/lib/__PATH__/Web/Plugin/Session.pm', {
+            package => "$self->{module}::${moniker}::Plugin::Session",
+        });
         $self->render_file( "lib/<<PATH>>/${moniker}/View.pm", 'Minimum/lib/__PATH__/Web/View.pm', {
             package   => "$self->{module}::${moniker}::View",
             tmpl_path => "tmpl/" . lc($moniker),
@@ -143,7 +162,7 @@ sub run {
 sub show_banner {
     my $self = shift;
 
-    print <<'...', $self->web_script, $self->admin_script;
+    printf <<'...', $self->web_script, $self->admin_script;
 --------------------------------------------------------------
 
 Setup script was done! You are ready to run the skelton.

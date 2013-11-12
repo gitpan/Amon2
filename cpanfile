@@ -26,6 +26,7 @@ requires 'URI::QueryParam';
 requires 'File::Copy::Recursive'; # setup script
 requires 'File::ShareDir';
 requires 'Module::CPANfile', '0.9020';
+requires 'HTTP::Session2';
 
 recommends 'Teng', 0.18;
 
@@ -58,4 +59,20 @@ on test => sub {
     suggests 'Test::WWW::Mechanize';
     suggests 'App::cpanminus';
     suggests 'File::Which';
+    suggests 'DBD::SQLite';
+    suggests 'Furl';
+    suggests 'Module::Functions';
+    suggests 'HTTP::MobileAgent';
+    suggests 'Text::MicroTemplate::Extended';
+    suggests 'Module::Find';
+    suggests 'Amon2::Plugin::LogDispatch';
+    suggests 'HTML::StickyQuery';
+    suggests 'Amon2::Plugin::Web::MobileAgent';
+    suggests 'Test::WWW::Mechanize::PSGI';
+    suggests 'Amon2::Plugin::Web::HTTPSession';
+    suggests 'Plack::Middleware::ReverseProxy';
+    suggests 'Starlet';
+    suggests 'Router::Simple::Sinatraish';
+    suggests 'Amon2::DBI';
 };
+

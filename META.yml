@@ -10,7 +10,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.7.5, CPAN::Meta::Converter version 2.132510'
+generated_by: 'Minilla/v0.8.4, CPAN::Meta::Converter version 2.132830'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,7 +29,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 5.16
+    version: 6.00
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -68,19 +68,21 @@ provides:
     file: lib/Amon2/Setup/Asset/SprintfJS.pm
   Amon2::Setup::Asset::StrftimeJS:
     file: lib/Amon2/Setup/Asset/StrftimeJS.pm
+  Amon2::Setup::Asset::XSRFTokenJS:
+    file: lib/Amon2/Setup/Asset/XSRFTokenJS.pm
   Amon2::Setup::Asset::jQuery:
     file: lib/Amon2/Setup/Asset/jQuery.pm
   Amon2::Setup::Flavor:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 5.16
+    version: 6.00
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
-    version: 5.16
+    version: 6.00
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 5.16
+    version: 6.00
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -114,6 +116,7 @@ requires:
   Getopt::Long: 0
   HTML::FillInForm::Lite: 0
   HTTP::Headers: 0
+  HTTP::Session2: 0
   Hash::MultiValue: 0
   JSON: 2
   MRO::Compat: 0
@@ -137,7 +140,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 5.16
+version: 6.00
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'

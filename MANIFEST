@@ -90,6 +90,7 @@ lib/Amon2/Setup/Asset/MicroLocationJS.pm
 lib/Amon2/Setup/Asset/MicroTemplateJS.pm
 lib/Amon2/Setup/Asset/SprintfJS.pm
 lib/Amon2/Setup/Asset/StrftimeJS.pm
+lib/Amon2/Setup/Asset/XSRFTokenJS.pm
 lib/Amon2/Setup/Asset/jQuery.pm
 lib/Amon2/Setup/Flavor.pm
 lib/Amon2/Setup/Flavor/Basic.pm
@@ -118,6 +119,7 @@ share/flavor/Basic/lib/__PATH__/DB/Row.pm
 share/flavor/Basic/lib/__PATH__/DB/Schema.pm
 share/flavor/Basic/lib/__PATH__/Web.pm
 share/flavor/Basic/lib/__PATH__/Web/Dispatcher.pm
+share/flavor/Basic/lib/__PATH__/Web/Plugin/Session.pm
 share/flavor/Basic/script/server.pl
 share/flavor/Basic/sql/mysql.sql
 share/flavor/Basic/sql/sqlite.sql
