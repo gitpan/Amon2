@@ -29,7 +29,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 6.01
+    version: 6.02
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -76,13 +76,13 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 6.01
+    version: 6.02
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
-    version: 6.01
+    version: 6.02
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 6.01
+    version: 6.02
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -140,7 +140,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 6.01
+version: 6.02
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
@@ -166,10 +166,10 @@ x_contributors:
   - 'Syohei YOSHIDA <syohex@gmail.com>'
   - 'Geraud CONTINSOUZAS <geraud@scsi.nc>'
   - 'Geraud <geraud@genta.nealab.net>'
-  - 'magnolia <magnolia.k@me.com>'
   - 'Katsuhiro Konishi <konishika@gmail.com>'
   - 'Neil Bowers <neil@bowers.com>'
   - 'Kazuhiro Osawa <yappo@shibuya.pl>'
   - 'Takafumi Ono <ono_pm@amber.plala.or.jp>'
   - 'moznion <moznion@gmail.com>'
   - 'wata <w.nagasawa@gmail.com>'
+  - 'magnolia <magnolia.k@me.com>'
