@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.11.0",
+   "generated_by" : "Minilla/v2.1.1",
    "license" : [
       "perl_5"
    ],
@@ -28,15 +28,14 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "CPAN::Meta::Prereqs" : "0",
             "Module::Build" : "0.38"
          }
       },
       "develop" : {
          "requires" : {
             "Test::CPAN::Meta" : "0",
-            "Test::MinimumVersion" : "0.10108",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
             "Test::Pod" : "1.41",
             "Test::Spellunker" : "v0.2.7"
          }
@@ -126,7 +125,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "6.02"
+         "version" : "6.03"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -136,9 +135,6 @@
       },
       "Amon2::Declare" : {
          "file" : "lib/Amon2/Declare.pm"
-      },
-      "Amon2::Plugin::Web::CSRFDefender" : {
-         "file" : "lib/Amon2/Plugin/Web/CSRFDefender.pm"
       },
       "Amon2::Plugin::Web::FillInFormLite" : {
          "file" : "lib/Amon2/Plugin/Web/FillInFormLite.pm"
@@ -196,15 +192,15 @@
       },
       "Amon2::Setup::Flavor::Basic" : {
          "file" : "lib/Amon2/Setup/Flavor/Basic.pm",
-         "version" : "6.02"
+         "version" : "6.03"
       },
       "Amon2::Setup::Flavor::Large" : {
          "file" : "lib/Amon2/Setup/Flavor/Large.pm",
-         "version" : "6.02"
+         "version" : "6.03"
       },
       "Amon2::Setup::Flavor::Minimum" : {
          "file" : "lib/Amon2/Setup/Flavor/Minimum.pm",
-         "version" : "6.02"
+         "version" : "6.03"
       },
       "Amon2::Setup::VC::Git" : {
          "file" : "lib/Amon2/Setup/VC/Git.pm"
@@ -251,7 +247,7 @@
          "web" : "https://github.com/tokuhirom/Amon"
       }
    },
-   "version" : "6.02",
+   "version" : "6.03",
    "x_contributors" : [
       "noblejasper <nobjas@gmail.com>",
       "noblejasper <jasper@main.noble-jasper.com>",
@@ -274,7 +270,6 @@
       "Fuji, Goro <gfuji@cpan.org>",
       "ITO Nobuaki <daydream.trippers@gmail.com>",
       "Geraud CONTINSOUZAS <geraud@hyaku.nijuu.nana>",
-      "Syohei YOSHIDA <syohex@gmail.com>",
       "Geraud CONTINSOUZAS <geraud@scsi.nc>",
       "Geraud <geraud@genta.nealab.net>",
       "Katsuhiro Konishi <konishika@gmail.com>",
@@ -283,6 +278,9 @@
       "Takafumi Ono <ono_pm@amber.plala.or.jp>",
       "moznion <moznion@gmail.com>",
       "wata <w.nagasawa@gmail.com>",
-      "magnolia <magnolia.k@me.com>"
+      "magnolia <magnolia.k@me.com>",
+      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Hiroyuki Akabane <hirobanex@gmail.com>",
+      "Ichito Nagata <i.nagata110@gmail.com>"
    ]
 }

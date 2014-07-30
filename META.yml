@@ -3,18 +3,16 @@ abstract: 'lightweight web application framework'
 author:
   - 'Tokuhiro Matsuno <tokuhirom@gmail.com>'
 build_requires:
-  Test::More: 0.98
-  Test::Requires: 0.06
+  Test::More: '0.98'
+  Test::Requires: '0.06'
 configure_requires:
-  CPAN::Meta: 0
-  CPAN::Meta::Prereqs: 0
-  Module::Build: 0.38
+  Module::Build: '0.38'
 dynamic_config: 0
-generated_by: 'Minilla/v0.11.0, CPAN::Meta::Converter version 2.133380'
+generated_by: 'Minilla/v2.1.1, CPAN::Meta::Converter version 2.141520'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Amon2
 no_index:
   directory:
@@ -29,15 +27,13 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: 6.02
+    version: '6.03'
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
     file: lib/Amon2/ContextGuard.pm
   Amon2::Declare:
     file: lib/Amon2/Declare.pm
-  Amon2::Plugin::Web::CSRFDefender:
-    file: lib/Amon2/Plugin/Web/CSRFDefender.pm
   Amon2::Plugin::Web::FillInFormLite:
     file: lib/Amon2/Plugin/Web/FillInFormLite.pm
   Amon2::Plugin::Web::JSON:
@@ -76,13 +72,13 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: 6.02
+    version: '6.03'
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
-    version: 6.02
+    version: '6.03'
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: 6.02
+    version: '6.03'
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -106,41 +102,41 @@ provides:
   Amon2::Web::WebSocket:
     file: lib/Amon2/Web/WebSocket.pm
 recommends:
-  Teng: 0.18
+  Teng: '0.18'
 requires:
-  Encode: 0
-  Exporter: 0
-  File::Copy::Recursive: 0
-  File::ShareDir: 0
-  File::Temp: 0
-  Getopt::Long: 0
-  HTML::FillInForm::Lite: 0
-  HTTP::Headers: 0
-  HTTP::Session2: 0
-  Hash::MultiValue: 0
-  JSON: 2
-  MRO::Compat: 0
-  Module::CPANfile: 0.9020
-  Plack: 0.9982
-  Plack::Request: 0
-  Plack::Response: 0
-  Plack::Session: 0
-  Plack::Util: 0
-  Pod::Usage: 0
-  Router::Boom: 0.07
-  Scalar::Util: 0
-  Text::Xslate: 2.0010
-  Try::Tiny: 0.06
-  URI: 1.54
-  URI::Escape: 0
-  URI::QueryParam: 0
-  parent: 0.223
-  perl: 5.008001
+  Encode: '0'
+  Exporter: '0'
+  File::Copy::Recursive: '0'
+  File::ShareDir: '0'
+  File::Temp: '0'
+  Getopt::Long: '0'
+  HTML::FillInForm::Lite: '0'
+  HTTP::Headers: '0'
+  HTTP::Session2: '0'
+  Hash::MultiValue: '0'
+  JSON: '2'
+  MRO::Compat: '0'
+  Module::CPANfile: '0.9020'
+  Plack: '0.9982'
+  Plack::Request: '0'
+  Plack::Response: '0'
+  Plack::Session: '0'
+  Plack::Util: '0'
+  Pod::Usage: '0'
+  Router::Boom: '0.07'
+  Scalar::Util: '0'
+  Text::Xslate: '2.0010'
+  Try::Tiny: '0.06'
+  URI: '1.54'
+  URI::Escape: '0'
+  URI::QueryParam: '0'
+  parent: '0.223'
+  perl: '5.008001'
 resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: 6.02
+version: '6.03'
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
@@ -163,7 +159,6 @@ x_contributors:
   - 'Fuji, Goro <gfuji@cpan.org>'
   - 'ITO Nobuaki <daydream.trippers@gmail.com>'
   - 'Geraud CONTINSOUZAS <geraud@hyaku.nijuu.nana>'
-  - 'Syohei YOSHIDA <syohex@gmail.com>'
   - 'Geraud CONTINSOUZAS <geraud@scsi.nc>'
   - 'Geraud <geraud@genta.nealab.net>'
   - 'Katsuhiro Konishi <konishika@gmail.com>'
@@ -173,3 +168,6 @@ x_contributors:
   - 'moznion <moznion@gmail.com>'
   - 'wata <w.nagasawa@gmail.com>'
   - 'magnolia <magnolia.k@me.com>'
+  - 'Syohei YOSHIDA <syohex@gmail.com>'
+  - 'Hiroyuki Akabane <hirobanex@gmail.com>'
+  - 'Ichito Nagata <i.nagata110@gmail.com>'
