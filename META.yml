@@ -27,7 +27,7 @@ no_index:
 provides:
   Amon2:
     file: lib/Amon2.pm
-    version: '6.03'
+    version: '6.04'
   Amon2::Config::Simple:
     file: lib/Amon2/Config/Simple.pm
   Amon2::ContextGuard:
@@ -72,13 +72,13 @@ provides:
     file: lib/Amon2/Setup/Flavor.pm
   Amon2::Setup::Flavor::Basic:
     file: lib/Amon2/Setup/Flavor/Basic.pm
-    version: '6.03'
+    version: '6.04'
   Amon2::Setup::Flavor::Large:
     file: lib/Amon2/Setup/Flavor/Large.pm
-    version: '6.03'
+    version: '6.04'
   Amon2::Setup::Flavor::Minimum:
     file: lib/Amon2/Setup/Flavor/Minimum.pm
-    version: '6.03'
+    version: '6.04'
   Amon2::Setup::VC::Git:
     file: lib/Amon2/Setup/VC/Git.pm
   Amon2::Trigger:
@@ -104,6 +104,7 @@ provides:
 recommends:
   Teng: '0.18'
 requires:
+  Digest::SHA: '0'
   Encode: '0'
   Exporter: '0'
   File::Copy::Recursive: '0'
@@ -115,6 +116,7 @@ requires:
   HTTP::Session2: '0'
   Hash::MultiValue: '0'
   JSON: '2'
+  MIME::Base64: '0'
   MRO::Compat: '0'
   Module::CPANfile: '0.9020'
   Plack: '0.9982'
@@ -126,6 +128,7 @@ requires:
   Router::Boom: '0.07'
   Scalar::Util: '0'
   Text::Xslate: '2.0010'
+  Time::HiRes: '0'
   Try::Tiny: '0.06'
   URI: '1.54'
   URI::Escape: '0'
@@ -136,7 +139,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Amon/issues
   homepage: https://github.com/tokuhirom/Amon
   repository: git://github.com/tokuhirom/Amon.git
-version: '6.03'
+version: '6.04'
 x_contributors:
   - 'noblejasper <nobjas@gmail.com>'
   - 'noblejasper <jasper@main.noble-jasper.com>'
