@@ -128,7 +128,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "6.04"
+         "version" : "6.05"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -195,15 +195,15 @@
       },
       "Amon2::Setup::Flavor::Basic" : {
          "file" : "lib/Amon2/Setup/Flavor/Basic.pm",
-         "version" : "6.04"
+         "version" : "6.05"
       },
       "Amon2::Setup::Flavor::Large" : {
          "file" : "lib/Amon2/Setup/Flavor/Large.pm",
-         "version" : "6.04"
+         "version" : "6.05"
       },
       "Amon2::Setup::Flavor::Minimum" : {
          "file" : "lib/Amon2/Setup/Flavor/Minimum.pm",
-         "version" : "6.04"
+         "version" : "6.05"
       },
       "Amon2::Setup::VC::Git" : {
          "file" : "lib/Amon2/Setup/VC/Git.pm"
@@ -250,7 +250,7 @@
          "web" : "https://github.com/tokuhirom/Amon"
       }
    },
-   "version" : "6.04",
+   "version" : "6.05",
    "x_contributors" : [
       "noblejasper <nobjas@gmail.com>",
       "noblejasper <jasper@main.noble-jasper.com>",
