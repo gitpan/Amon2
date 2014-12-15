@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.1.1",
+   "generated_by" : "Minilla/v2.2.0",
    "license" : [
       "perl_5"
    ],
@@ -128,7 +128,7 @@
    "provides" : {
       "Amon2" : {
          "file" : "lib/Amon2.pm",
-         "version" : "6.10"
+         "version" : "6.11"
       },
       "Amon2::Config::Simple" : {
          "file" : "lib/Amon2/Config/Simple.pm"
@@ -195,15 +195,15 @@
       },
       "Amon2::Setup::Flavor::Basic" : {
          "file" : "lib/Amon2/Setup/Flavor/Basic.pm",
-         "version" : "6.10"
+         "version" : "6.11"
       },
       "Amon2::Setup::Flavor::Large" : {
          "file" : "lib/Amon2/Setup/Flavor/Large.pm",
-         "version" : "6.10"
+         "version" : "6.11"
       },
       "Amon2::Setup::Flavor::Minimum" : {
          "file" : "lib/Amon2/Setup/Flavor/Minimum.pm",
-         "version" : "6.10"
+         "version" : "6.11"
       },
       "Amon2::Setup::VC::Git" : {
          "file" : "lib/Amon2/Setup/VC/Git.pm"
@@ -250,7 +250,7 @@
          "web" : "https://github.com/tokuhirom/Amon"
       }
    },
-   "version" : "6.10",
+   "version" : "6.11",
    "x_contributors" : [
       "noblejasper <nobjas@gmail.com>",
       "noblejasper <jasper@main.noble-jasper.com>",
@@ -261,7 +261,6 @@
       "mattn <mattn.jp@gmail.com>",
       "Masahiro Nagano <kazeburo@gmail.com>",
       "rightgo09 <skyarrow09@gmail.com>",
-      "karupanerura <karupa@cpan.org>",
       "hatyuki <hatyuki29@gmail.com>",
       "Keiji, Yoshimi <walf443@gmail.com>",
       "Nishibayashi Takuji <takuji31@gmail.com>",
@@ -284,6 +283,7 @@
       "Syohei YOSHIDA <syohex@gmail.com>",
       "Hiroyuki Akabane <hirobanex@gmail.com>",
       "Ichito Nagata <i.nagata110@gmail.com>",
-      "Geraud CONTINSOUZAS <geraud@scsi.nc>"
+      "Geraud CONTINSOUZAS <geraud@scsi.nc>",
+      "karupanerura <karupa@cpan.org>"
    ]
 }
